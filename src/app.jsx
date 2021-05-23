@@ -1,8 +1,13 @@
-import './app.css';
-import Habit from './components/habit';
+import React from 'react';
+import styles from './app.module.css';
+import Login from './components/login/login';
 
-function App() {
-  return <Habit />;
+function App({ authService }) {
+  return (
+    <div className={styles.app}>
+      <Login authService={authService} />
+    </div>
+  );
 }
 
 export default App;
