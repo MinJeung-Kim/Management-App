@@ -5,7 +5,8 @@ import styles from './login.module.css';
 
 const Login = ({ authService }) => {
   const onLogin = event => {
-    authService //
+    authService 
+    //auth_service.js의 providerName변수에 버튼 이름 전달.
       .login(event.currentTarget.textContent)
       .then(console.log);
   };
