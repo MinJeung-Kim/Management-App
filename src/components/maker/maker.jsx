@@ -26,7 +26,7 @@ const Maker = ({FileInput, authService, cardRepository}) => {
         })
         // 컴포넌트가 Unmount됬을때 호출할 함수 리턴
         return () => stopSync(); 
-    }, [userId])
+    }, [userId, cardRepository]);
 
     // 로그인
     useEffect(() => {
@@ -37,7 +37,7 @@ const Maker = ({FileInput, authService, cardRepository}) => {
                 history.push('/');
             }
         });
-    });
+    }, [authService, userId, history]);
 
     const createOrUpdateCard = (card) => {   
         // updated의 key를 이용

@@ -25,7 +25,7 @@ const ImageFileInput = ({ imageUploader, name, onFileChange }) => {
 
     return (
         <div className={styles.container}>
-            <input ref={inputRef} className={styles.input} type="file" accept="image/*" name="file" onChange={onChange} />
+            <input ref={inputRef} className={styles.input} type="file" accept="image/*" name="file" onChange={onChange} readOnly />
                                                  {/* 파일 유무에 따른 스타일 변경 */}
         {!loading && (<button className={`${styles.button} ${name ? styles.pink : styles.grey}`} onClick={onButtonClick} >{name || 'No file'}</button>)}
             { loading && <div className={styles.loading}></div> }
