@@ -12,9 +12,9 @@ const Maker = ({FileInput, authService, cardRepository}) => {
     const [userId, setUserID] = useState(historyState && historyState.id)
  
     const history = useHistory();
-    const onLogout = () => {
+    const onLogout = useCallback(() => {
         authService.logout();
-    };
+    }, [authService]);
 
     // 사용자 id 변경
     useEffect(() => {
