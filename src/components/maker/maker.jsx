@@ -13,6 +13,9 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [cards, setCards] = useState({});
   const [userId, setUserID] = useState(historyState && historyState.id);
 
+  const [openEditor, setOpenEditor] = useState(false);
+  const [openDetail, setOpenDetail] = useState(false);
+
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);
@@ -63,19 +66,25 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     <section className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.container}>
-        <UserListTable cards={cards} />
-        <Preview
-          FileInput={FileInput}
-          cards={cards}
-          updateCard={createOrUpdateCard}
-        />
-        {/* <Editor
-          FileInput={FileInput}
-          cards={cards}
-          addCard={createOrUpdateCard}
-          updateCard={createOrUpdateCard}
-          deleteCard={deleteCard}
-        /> */}
+        <div>
+          <UserListTable
+            cards={cards}
+            openEditor={setOpenEditor}
+            openDetail={setOpenDetail}
+          />
+          {openEditor && (
+            <Editor FileInput={FileInput} addCard={createOrUpdateCard} />
+          )}
+        </div>
+        {openDetail && (
+          <Preview
+            FileInput={FileInput}
+            cards={cards}
+            updateCard={createOrUpdateCard}
+            deleteCard={deleteCard}
+            openDetail={setOpenDetail}
+          />
+        )}
       </div>
       <Footer />
     </section>

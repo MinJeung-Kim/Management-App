@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./user_list_table.module.css";
 
 const DEFAULT_IMAGE = "/images/default_logo.png";
-const UserListTable = ({ cards }) => {
-  const detailCard = (event) => {};
+const UserListTable = ({ cards, openEditor, openDetail }) => {
+  const fnOpenEditor = () => {
+    openEditor(true);
+  };
+
+  const fnOpenDetail = () => {
+    openDetail(true);
+  };
 
   return (
     <div className={styles.list}>
@@ -23,6 +29,7 @@ const UserListTable = ({ cards }) => {
             <th>이름</th>
             <th>나이</th>
             <th>전화번호</th>
+            <th>직업</th>
             <th>구분</th>
             <th>등록일</th>
             <th>등록기간</th>
@@ -42,18 +49,18 @@ const UserListTable = ({ cards }) => {
                   .replace(/[^0-9]/, "")
                   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)}
               </td>
+              <td>{cards[key].job}</td>
               <td>일반</td>
               <td>{cards[key].registration}</td>
               <td> {cards[key].period}</td>
               <td>
-                <i className="fas fa-trash-alt"></i>
-                <i className="fas fa-pencil-alt" onClick={detailCard}></i>
+                <i className="fas fa-pencil-alt" onClick={fnOpenDetail}></i>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <i className="fas fa-edit"></i>
+      <i className="fas fa-edit" onClick={fnOpenEditor}></i>
     </div>
   );
 };

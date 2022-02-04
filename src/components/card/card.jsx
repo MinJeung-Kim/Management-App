@@ -1,9 +1,10 @@
 import React, { memo } from "react";
+import Button from "../button/button";
 import styles from "./card.module.css";
 
 const DEFAULT_IMAGE = "/images/default_logo.png";
 
-const Card = memo(({ FileInput, card, updateCard }) => {
+const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   const onFileChange = (file) => {
     updateCard({
       ...card,
@@ -24,10 +25,19 @@ const Card = memo(({ FileInput, card, updateCard }) => {
     });
   };
 
+  const onSubmit = () => {
+    deleteCard(card);
+  };
+
+  const fnCloseDetail = () => {
+    openDetail(false);
+  };
+
   // card에 있는 모든 정보 전달
   const {
     name,
     age,
+    job,
     registration,
     phone,
     message,
@@ -39,6 +49,7 @@ const Card = memo(({ FileInput, card, updateCard }) => {
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <>
+      <i className="far fa-times-circle" onClick={fnCloseDetail}></i>
       <li className={`${styles.card} ${getStyles(theme)}`}>
         <img className={styles.avatar} src={url} alt="profile" />
         <i className="fas fa-cog">
@@ -63,6 +74,15 @@ const Card = memo(({ FileInput, card, updateCard }) => {
               onChange={onChange}
             />
             세
+          </p>
+          <p className={styles.job}>
+            직업 :
+            <input
+              type="text"
+              name="job"
+              defaultValue={job}
+              onChange={onChange}
+            />
           </p>
           <p className={styles.registration}>
             등록일 :
@@ -111,6 +131,7 @@ const Card = memo(({ FileInput, card, updateCard }) => {
           </p>
         </div>
       </li>
+      <Button name="Delete" onClick={onSubmit} />
     </>
   );
 });

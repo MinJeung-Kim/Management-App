@@ -6,12 +6,21 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const ageRef = useRef();
+  const jobRef = useRef();
   const periodRef = useRef();
   const themeRef = useRef();
   const registrationRef = useRef();
   const phoneRef = useRef();
   const messageRef = useRef();
   const [file, setFile] = useState({ fileName: null, fileURL: null });
+
+  const date = new Date();
+  const today =
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() + 1).toString().padStart(2, "0") +
+    "-" +
+    date.getDate().toString().padStart(2, "0");
 
   const onFileChange = (file) => {
     console.log(file);
@@ -27,6 +36,7 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
       id: Date.now(), //uuid
       name: nameRef.current.value || "",
       age: parseInt(ageRef.current.value) || "",
+      job: jobRef.current.value || "",
       period: periodRef.current.value,
       theme: themeRef.current.value,
       registration: registrationRef.current.value || "",
@@ -35,8 +45,6 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
       fileName: file.fileName || "",
       fileURL: file.fileURL || "",
     };
-
-    console.log(card.age);
 
     formRef.current.reset();
     setFile({ fileName: null, fileURL: null });
@@ -61,6 +69,31 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         max={100}
         placeholder="age"
       />
+      <input
+        ref={jobRef}
+        className={styles.input}
+        type="text"
+        name="job"
+        placeholder="job"
+      />
+      <input
+        ref={phoneRef}
+        className={styles.input}
+        type="text"
+        name="phone"
+        required
+        pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
+        maxLength="11"
+        placeholder="예) 010-1234-5678"
+      />
+      <input
+        ref={registrationRef}
+        className={styles.input}
+        type="date"
+        name="registration"
+        defaultValue={today}
+        placeholder="registration"
+      />
       <select
         ref={periodRef}
         className={styles.select}
@@ -81,23 +114,6 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         <option placeholder="dark">dark</option>
         <option placeholder="colorful">colorful</option>
       </select>
-      <input
-        ref={registrationRef}
-        className={styles.input}
-        type="date"
-        name="registration"
-        placeholder="registration"
-      />
-      <input
-        ref={phoneRef}
-        className={styles.input}
-        type="text"
-        name="phone"
-        required
-        pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
-        maxLength="11"
-        placeholder="예) 010-1234-5678"
-      />
       <textarea
         ref={messageRef}
         className={styles.textarea}

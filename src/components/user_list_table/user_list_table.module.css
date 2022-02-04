@@ -1,4 +1,4 @@
-@value makerGrey, makerShadow from '../../common/colors.css';
+@value makerGrey, makerShadow, makerPink from '../../common/colors.css';
 
 .list {
 }
@@ -79,7 +79,8 @@ th,
 td {
   display: flex;
   align-items: center;
-  width: 100px;
+  justify-content: center;
+  width: 7.5rem;
   height: 50px;
 }
 
@@ -88,8 +89,13 @@ td {
   font-weight: 600;
 }
 
+td i {
+  margin: 0.5rem;
+}
+
 td i:hover {
   cursor: pointer;
+  color: makerPink;
 }
 
 .profile {
