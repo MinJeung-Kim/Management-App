@@ -1,13 +1,13 @@
 class ImageUploader {
   async upload(file) {
     const data = new FormData();
-    data.append('file', file);
-    data.append('upload_preset', process.env.REACT_APP_CLOUDINARY_PRESET);
+    data.append("file", file);
+    data.append("upload_preset", "pdzaoz52");
     console.log(process.env);
     const result = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/upload`,
+      `https://api.cloudinary.com/v1_1/drqni4rhj/upload`,
       {
-        method: 'POST',
+        method: "POST",
         body: data,
       }
     );
