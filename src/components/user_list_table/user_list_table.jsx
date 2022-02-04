@@ -4,7 +4,7 @@ import styles from "./user_list_table.module.css";
 
 const DEFAULT_IMAGE = "/images/default_logo.png";
 
-const UserListTable = ({ cards, openEditor, openDetail }) => {
+const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
   const [limit, setLimit] = useState(3);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
@@ -13,7 +13,8 @@ const UserListTable = ({ cards, openEditor, openDetail }) => {
     openEditor(true);
   };
 
-  const fnOpenDetail = () => {
+  const fnOpenDetail = (event) => {
+    cardId(event.target.dataset.id);
     openDetail(true);
   };
 
@@ -65,33 +66,37 @@ const UserListTable = ({ cards, openEditor, openDetail }) => {
                 <td>{cards[key].registration}</td>
                 <td> {cards[key].period}</td>
                 <td>
-                  <i className="fas fa-pencil-alt" onClick={fnOpenDetail}></i>
+                  <i
+                    className="fas fa-pencil-alt"
+                    data-id={cards[key].id}
+                    onClick={fnOpenDetail}
+                  ></i>
                 </td>
               </tr>
             ))}
         </tbody>
-        <label>
-          페이지 당 표시할 게시물 수:&nbsp;
-          <select
-            type="number"
-            value={limit}
-            onChange={({ target: { value } }) => setLimit(Number(value))}
-          >
-            <option value="3">3</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-          </select>
-        </label>
-        <footer>
-          <Pagination
-            total={Object.keys(cards).length}
-            limit={limit}
-            page={page}
-            setPage={setPage}
-          />
-        </footer>
       </table>
+      <label>
+        페이지 당 표시할 게시물 수:&nbsp;
+        <select
+          type="number"
+          value={limit}
+          onChange={({ target: { value } }) => setLimit(Number(value))}
+        >
+          <option value="3">3</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </label>
+      <footer>
+        <Pagination
+          total={Object.keys(cards).length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+      </footer>
       <i className="fas fa-edit" onClick={fnOpenEditor}></i>
     </div>
   );

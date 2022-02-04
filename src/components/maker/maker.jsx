@@ -12,6 +12,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const historyState = useHistory().state;
   const [cards, setCards] = useState({});
   const [userId, setUserID] = useState(historyState && historyState.id);
+  const [cardId, setCardID] = useState("");
 
   const [openEditor, setOpenEditor] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
@@ -71,6 +72,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             cards={cards}
             openEditor={setOpenEditor}
             openDetail={setOpenDetail}
+            cardId={setCardID}
           />
           {openEditor && (
             <Editor FileInput={FileInput} addCard={createOrUpdateCard} />
@@ -83,6 +85,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             updateCard={createOrUpdateCard}
             deleteCard={deleteCard}
             openDetail={setOpenDetail}
+            cardId={cardId}
           />
         )}
       </div>
