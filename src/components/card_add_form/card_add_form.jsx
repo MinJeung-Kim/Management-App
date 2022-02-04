@@ -2,16 +2,17 @@ import React, { memo, useRef, useState } from "react";
 import Button from "../button/button";
 import styles from "./card_add_form.module.css";
 
-const CardAddForm = memo(({ FileInput, onAdd }) => {
+const CardAddForm = memo(({ FileInput, onAdd, payPrice, sale, setSale }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const ageRef = useRef();
   const jobRef = useRef();
-  const periodRef = useRef();
-  const themeRef = useRef();
-  const registrationRef = useRef();
   const phoneRef = useRef();
+  const discountRef = useRef();
+  const periodRef = useRef();
+  const registrationRef = useRef();
   const messageRef = useRef();
+  const themeRef = useRef();
   const [file, setFile] = useState({ fileName: null, fileURL: null });
 
   const date = new Date();
@@ -30,6 +31,11 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
     });
   };
 
+  const onChangeDiscount = () => {
+    console.log("onChangeDiscount", discountRef.current.value);
+    discountRef.current.value === "할인" ? setSale(1000) : setSale(0);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     const card = {
@@ -37,10 +43,11 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
       name: nameRef.current.value || "",
       age: parseInt(ageRef.current.value) || "",
       job: jobRef.current.value || "",
+      phone: phoneRef.current.value || "",
+      discount: discountRef.current.value || "",
       period: periodRef.current.value,
       theme: themeRef.current.value,
       registration: registrationRef.current.value || "",
-      phone: phoneRef.current.value || "",
       message: messageRef.current.value || "",
       fileName: file.fileName || "",
       fileURL: file.fileURL || "",
@@ -70,13 +77,6 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         placeholder="age"
       />
       <input
-        ref={jobRef}
-        className={styles.input}
-        type="text"
-        name="job"
-        placeholder="job"
-      />
-      <input
         ref={phoneRef}
         className={styles.input}
         type="text"
@@ -84,8 +84,25 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         required
         pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
         maxLength="11"
-        placeholder="예) 010-1234-5678"
+        placeholder="하이픈(-)없이 입력"
       />
+      <input
+        ref={jobRef}
+        className={styles.input}
+        type="text"
+        name="job"
+        placeholder="job"
+      />
+      <select
+        ref={discountRef}
+        className={styles.discount}
+        name="discount"
+        placeholder="Discount"
+        onChange={onChangeDiscount}
+      >
+        <option value="일반">일반</option>
+        <option value="할인">할인</option>
+      </select>
       <input
         ref={registrationRef}
         className={styles.input}
@@ -120,6 +137,15 @@ const CardAddForm = memo(({ FileInput, onAdd }) => {
         name="message"
         placeholder="message"
       ></textarea>
+      <p className={styles.input}>
+        결제금액 : {new Intl.NumberFormat().format(payPrice)}
+      </p>
+      <p className={styles.input}>
+        할인금액 : {new Intl.NumberFormat().format(sale)}
+      </p>
+      <p className={styles.input}>
+        총 결제금액 :{new Intl.NumberFormat().format(payPrice - sale)}
+      </p>
       <div className={styles.fileInput}>
         <FileInput naem={file.fileName} onFileChange={onFileChange} />
       </div>

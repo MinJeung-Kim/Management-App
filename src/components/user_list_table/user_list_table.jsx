@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DdayCountDown from "../dday_count_down/dday_count_down";
 import Pagination from "../pagination/Pagination";
 import styles from "./user_list_table.module.css";
 
@@ -41,6 +42,7 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
             <th>등록일</th>
             <th>등록기간</th>
             <th>비고</th>
+            <th>D-Day</th>
           </tr>
         </thead>
         <tbody className={styles.tbody}>
@@ -62,7 +64,7 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                     .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)}
                 </td>
                 <td>{cards[key].job}</td>
-                <td>일반</td>
+                <td>{cards[key].discount}</td>
                 <td>{cards[key].registration}</td>
                 <td> {cards[key].period}</td>
                 <td>
@@ -71,6 +73,12 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                     data-id={cards[key].id}
                     onClick={fnOpenDetail}
                   ></i>
+                </td>
+                <td>
+                  <DdayCountDown
+                    registration={cards[key].registration}
+                    period={cards[key].period}
+                  />
                 </td>
               </tr>
             ))}

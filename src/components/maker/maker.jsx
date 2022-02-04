@@ -14,8 +14,13 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [userId, setUserID] = useState(historyState && historyState.id);
   const [cardId, setCardID] = useState("");
 
+  // 팝업 on/off
   const [openEditor, setOpenEditor] = useState(false);
   const [openDetail, setOpenDetail] = useState(false);
+
+  // 결제 금액
+  const payPrice = 10000;
+  const [sale, setSale] = useState(0);
 
   const onLogout = useCallback(() => {
     authService.logout();
@@ -75,7 +80,13 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             cardId={setCardID}
           />
           {openEditor && (
-            <Editor FileInput={FileInput} addCard={createOrUpdateCard} />
+            <Editor
+              FileInput={FileInput}
+              addCard={createOrUpdateCard}
+              payPrice={payPrice}
+              sale={sale}
+              setSale={setSale}
+            />
           )}
         </div>
         {openDetail && (

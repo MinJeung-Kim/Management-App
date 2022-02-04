@@ -38,8 +38,9 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
     name,
     age,
     job,
-    registration,
     phone,
+    discount,
+    registration,
     message,
     period,
     theme,
@@ -83,6 +84,18 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               defaultValue={job}
               onChange={onChange}
             />
+          </p>
+          <p className={styles.discount}>
+            구분 :
+            <select
+              className={styles.select}
+              name="discount"
+              defaultValue={discount}
+              onChange={onChange}
+            >
+              <option value="일반">일반</option>
+              <option value="할인">할인</option>
+            </select>
           </p>
           <p className={styles.registration}>
             등록일 :
