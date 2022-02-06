@@ -50,32 +50,36 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <>
-      <i className="far fa-times-circle" onClick={fnCloseDetail}></i>
+      <div className={styles.close}>
+        <i className="far fa-times-circle" onClick={fnCloseDetail}></i>
+      </div>
+
+      <li className={styles.profile}>
+        <div className={styles.imagLeft}>
+          <img className={styles.avatar} src={url} alt="profile" />
+          {/* <i className="fas fa-cog">
+            <FileInput name={fileName} onFileChange={onFileChange} />
+          </i> */}
+        </div>
+        <div className={styles.imagRight}>
+          <input
+            className={styles.name}
+            type="text"
+            name="name"
+            defaultValue={name}
+            onChange={onChange}
+          />
+          <input
+            className={styles.age}
+            type="number"
+            name="age"
+            defaultValue={age}
+            onChange={onChange}
+          />
+        </div>
+      </li>
       <li className={`${styles.card} ${getStyles(theme)}`}>
-        <img className={styles.avatar} src={url} alt="profile" />
-        <i className="fas fa-cog">
-          <FileInput name={fileName} onFileChange={onFileChange} />
-        </i>
         <div className={styles.info}>
-          <h1 className={styles.name}>
-            이름 :
-            <input
-              type="text"
-              name="name"
-              defaultValue={name}
-              onChange={onChange}
-            />
-          </h1>
-          <p className={styles.age}>
-            나이 :
-            <input
-              type="number"
-              name="age"
-              defaultValue={age}
-              onChange={onChange}
-            />
-            세
-          </p>
           <p className={styles.job}>
             직업 :
             <input
@@ -133,6 +137,8 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               onChange={onChange}
             />
           </p>
+        </div>
+        <div>
           <p className={styles.message}>
             자기소개 :
             <textarea

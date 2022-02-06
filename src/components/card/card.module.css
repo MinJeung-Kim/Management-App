@@ -1,14 +1,36 @@
 @value makerShadow, makerBlack, makerWhite, makerColorful, makerWheat from '../../common/colors.css';
 
-.card {
+.close {
+  font-size: 3.25rem;
+  color: rgb(137 157 193);
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.imagLeft {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.imagRight {
   display: flex;
   flex-direction: column;
+  flex: 2;
+}
+
+.card {
+  display: flex;
   align-items: center;
   width: 100%;
   border-radius: 1em;
   margin-bottom: 0.5em;
   padding: 0.2em 0;
-  background-color: yellow;
   box-shadow: 6px 6px 8px 0px makerShadow;
   max-width: 30rem;
 }
@@ -19,7 +41,6 @@
 }
 
 .card.light {
-  background-color: makerWhite;
   color: makerBlack;
 }
 
@@ -28,41 +49,28 @@
 }
 
 .avatar {
-  width: 10em;
-  height: 10em;
-  padding: 1em;
-  margin-left: 0.5em;
-  margin-right: 1em;
+  width: 4.625rem;
+  height: 4.625rem;
   border-radius: 50%;
+  box-shadow: rgb(0 0 0 / 12%) 0rem 0.3125rem 0.625rem 0rem;
 }
 
 .info {
   width: 100%;
 }
 
-.name,
-.company,
-.title,
-.email,
-.message {
-  margin: 0;
-  font-size: 0.8rem;
-  margin-bottom: 0.2em;
+input {
+  padding: 0 0.5rem;
+  width: auto;
+  border: none;
+  background: transparent;
 }
 
 .name {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
-.company {
-  margin-bottom: 1em;
-}
-
-.company::after {
-  content: "";
-  display: block;
-  width: 90%;
-  height: 2px;
-  background-color: makerWheat;
-  transform: translateY(0.5em);
+.age {
+  font-size: 0.875rem;
+  color: rgb(123, 128, 154);
 }

@@ -1,13 +1,14 @@
-@value makerGrey, makerShadow, makerPink from '../../common/colors.css';
+@value makerGrey, makerShadow, makerPink, makerWhite, makerBlue from '../../common/colors.css';
 
 .list {
+  padding: 24px;
 }
 
 .table {
   width: 100%;
   text-align: center;
   padding: 3rem 1.5rem;
-  background: beige;
+  background: makerWhite;
   margin-bottom: 1rem;
   border: 0px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.75rem;
@@ -42,7 +43,7 @@
 
 .top i {
   font-weight: 700;
-  color: rgb(26, 115, 232);
+  color: makerBlue;
   margin-top: -4px;
   font-size: inherit !important;
   margin-right: 0.3rem;

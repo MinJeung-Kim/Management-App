@@ -1,17 +1,18 @@
 @value mediaQuery from '../../common/size.css';
-@value makerWhite from '../../common/colors.css';
+@value makerLightGrey from '../../common/colors.css';
 
 .maker {
   width: 100%;
   height: 100%;
   max-width: 80rem;
+  position: relative;
   display: flex;
   flex-direction: column;
-  background-color: makerWhite;
+  padding: 24px;
+  background-color: makerLightGrey;
 }
 
 .container {
-  display: flex;
   flex: 1;
   min-height: 0;
 }

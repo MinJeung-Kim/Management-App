@@ -1,13 +1,23 @@
 @value makerGreen, makerWhite from '../../common/colors.css';
 
 .button {
-  background-color: makerGreen;
-  color: makerWhite;
-  font-weight: bold;
+  border: 0px;
   cursor: pointer;
-  padding: 0.5em;
-  flex: 1 1 50%;
-  font-size: 0.8rem;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.02857em;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  min-height: 2.3125rem;
+  padding: 0.5625rem 1.5rem;
+  background-image: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+  color: rgb(255, 255, 255);
+  box-shadow: rgb(52 71 103 / 15%) 0rem 0.1875rem 0.1875rem 0rem,
+    rgb(52 71 103 / 20%) 0rem 0.1875rem 0.0625rem -0.125rem,
+    rgb(52 71 103 / 15%) 0rem 0.0625rem 0.3125rem 0rem;
 }
 
 .button:hover {

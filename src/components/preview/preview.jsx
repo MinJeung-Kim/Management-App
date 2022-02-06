@@ -11,7 +11,6 @@ const Preview = ({
   cardId,
 }) => (
   <section className={styles.preview}>
-    <h1 className={styles.title}>Card Preview</h1>
     <ul className={styles.cards}>
       {Object.keys(cards).map(
         (key) =>

@@ -29,36 +29,33 @@ const Nav = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
   margin: 16px;
 `;
 
 const Button = styled.button`
-  border: none;
-  border-radius: 50%;
+  border: 1px solid #dee2e6;
   padding: 8px;
-  margin: 0;
-  background: black;
-  color: white;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  background: transparent;
+  color: rgb(26, 115, 232);
 
   &:hover {
-    background: tomato;
+    background: rgb(240, 242, 245);
     cursor: pointer;
-    transform: translateY(-2px);
   }
 
   &[disabled] {
-    background: grey;
+    background: rgb(240, 242, 245);
+    color: #626262;
     cursor: revert;
-    transform: revert;
   }
 
   &[aria-current] {
-    background: deeppink;
+    background: rgb(26, 115, 232);
+    border: none;
     font-weight: bold;
     cursor: revert;
-    transform: revert;
+    color: white;
   }
 `;
 

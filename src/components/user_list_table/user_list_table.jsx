@@ -30,7 +30,19 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                 <i className="fas fa-check"></i>30 done this month
               </p>
             </div>
-            <i className="fas fa-ellipsis-v"></i>
+            <label>
+              페이지 당 표시할 게시물 수:&nbsp;
+              <select
+                type="number"
+                value={limit}
+                onChange={({ target: { value } }) => setLimit(Number(value))}
+              >
+                <option value="3">3</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
+            </label>
           </div>
 
           <tr className={styles.thead}>
@@ -82,29 +94,18 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                 </td>
               </tr>
             ))}
+
+          <footer>
+            <Pagination
+              total={Object.keys(cards).length}
+              limit={limit}
+              page={page}
+              setPage={setPage}
+            />
+          </footer>
         </tbody>
       </table>
-      <label>
-        페이지 당 표시할 게시물 수:&nbsp;
-        <select
-          type="number"
-          value={limit}
-          onChange={({ target: { value } }) => setLimit(Number(value))}
-        >
-          <option value="3">3</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select>
-      </label>
-      <footer>
-        <Pagination
-          total={Object.keys(cards).length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />
-      </footer>
+
       <i className="fas fa-edit" onClick={fnOpenEditor}></i>
     </div>
   );
