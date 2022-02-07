@@ -8,10 +8,10 @@ const SideBar = () => {
           <i className="fas fa-chart-line"></i>Dashboard
         </li>
         <li className={styles.tables}>
-          <i class="fas fa-user"></i>Tables
+          <i className="fas fa-user"></i>Tables
         </li>
         <li className={styles.billing}>
-          <i class="far fa-credit-card"></i>Billing
+          <i className="far fa-credit-card"></i>Billing
         </li>
       </ul>
     </aside>

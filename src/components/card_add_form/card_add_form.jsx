@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import Button from "../button/button";
 import styles from "./card_add_form.module.css";
 
@@ -6,14 +6,26 @@ const CardAddForm = memo(
   ({ FileInput, onAdd, payPrice, sale, setSale, openEditor }) => {
     const formRef = useRef();
     const nameRef = useRef();
+    const genderRef = useRef();
     const ageRef = useRef();
     const jobRef = useRef();
-    const phoneRef = useRef();
     const discountRef = useRef();
     const periodRef = useRef();
     const registrationRef = useRef();
     const messageRef = useRef();
     const [file, setFile] = useState({ fileName: null, fileURL: null });
+    const [phone, setPhone] = useState("");
+
+    useEffect(() => {
+      if (phone.length === 10) {
+        setPhone(phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+      }
+      if (phone.length === 13) {
+        setPhone(
+          phone.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+        );
+      }
+    }, [phone]);
 
     const date = new Date();
     const today =
@@ -31,26 +43,40 @@ const CardAddForm = memo(
       });
     };
 
+    const handlePress = (e) => {
+      const regex = /^[0-9\b -]{0,13}$/;
+      if (regex.test(e.target.value)) {
+        setPhone(e.target.value);
+      }
+    };
+
     const onChangeDiscount = () => {
       discountRef.current.value === "할인" ? setSale(1000) : setSale(0);
     };
 
     const onSubmit = (event) => {
       event.preventDefault();
+
       const card = {
         id: Date.now(), //uuid
         name: nameRef.current.value || "",
-        age: parseInt(ageRef.current.value) || "",
-        job: jobRef.current.value || "",
-        phone: phoneRef.current.value || "",
+        gender: genderRef.current.value || "",
+        age: parseInt(ageRef.current.value) || "-",
+        job: jobRef.current.value || "기타",
+        phone: phone || "",
         discount: discountRef.current.value || "",
         period: periodRef.current.value,
-        registration: registrationRef.current.value || "",
+        registration: registrationRef.current.value,
         message: messageRef.current.value || "",
         fileName: file.fileName || "",
         fileURL: file.fileURL || "",
       };
 
+      if (card.name === "") {
+        return alert("이름을 입력하세요");
+      } else if (card.phone === "") {
+        return alert("전화번호를 입력하세요");
+      }
       formRef.current.reset();
       setFile({ fileName: null, fileURL: null });
       onAdd(card);
@@ -65,87 +91,152 @@ const CardAddForm = memo(
         <div className={styles.close}>
           <i className="far fa-times-circle" onClick={fnCloseDetail}></i>
         </div>
+        <h1 className={styles.title}>회원 등록</h1>
         <form ref={formRef} className={styles.form}>
-          <input
-            ref={nameRef}
-            className={styles.input}
-            type="text"
-            name="name"
-            placeholder="Nmae"
-          />
-          <input
-            ref={ageRef}
-            className={styles.input}
-            type="number"
-            name="age"
-            min={1}
-            max={100}
-            placeholder="age"
-          />
-          <input
-            ref={phoneRef}
-            className={styles.input}
-            type="text"
-            name="phone"
-            required
-            pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
-            maxLength="11"
-            placeholder="하이픈(-)없이 입력"
-          />
-          <input
-            ref={jobRef}
-            className={styles.input}
-            type="text"
-            name="job"
-            placeholder="job"
-          />
-          <select
-            ref={discountRef}
-            className={styles.discount}
-            name="discount"
-            placeholder="Discount"
-            onChange={onChangeDiscount}
-          >
-            <option value="일반">일반</option>
-            <option value="할인">할인</option>
-          </select>
-          <input
-            ref={registrationRef}
-            className={styles.input}
-            type="date"
-            name="registration"
-            defaultValue={today}
-            placeholder="registration"
-          />
-          <select
-            ref={periodRef}
-            className={styles.select}
-            name="period"
-            placeholder="Period"
-          >
-            <option value="1개월">1개월</option>
-            <option value="3개월">3개월</option>
-            <option value="6개월">6개월</option>
-          </select>
-          <textarea
-            ref={messageRef}
-            className={styles.textarea}
-            name="message"
-            placeholder="message"
-          ></textarea>
-          <p className={styles.input}>
-            결제금액 : {new Intl.NumberFormat().format(payPrice)}
-          </p>
-          <p className={styles.input}>
-            할인금액 : {new Intl.NumberFormat().format(sale)}
-          </p>
-          <p className={styles.input}>
-            총 결제금액 :{new Intl.NumberFormat().format(payPrice - sale)}
-          </p>
-          <div className={styles.fileInput}>
-            <FileInput naem={file.fileName} onFileChange={onFileChange} />
+          <div className={styles.section}>
+            <div className={styles.formbox}>
+              <div className={styles.formgroup}>
+                <label>이름 </label>
+                <input
+                  ref={nameRef}
+                  className={styles.input}
+                  type="text"
+                  name="name"
+                  placeholder="Nmae"
+                />
+              </div>
+              <div className={styles.formgroup}>
+                <label>나이</label>
+                <input
+                  ref={ageRef}
+                  className={styles.input}
+                  type="number"
+                  name="age"
+                  min={1}
+                  max={100}
+                  placeholder="Age"
+                />
+              </div>
+              <div className={styles.formgroup}>
+                <label>직업</label>
+                <input
+                  ref={jobRef}
+                  className={styles.input}
+                  type="text"
+                  name="job"
+                  placeholder="Job"
+                />
+              </div>
+              <div className={styles.formgroup}>
+                <label>등록일 </label>
+                <input
+                  ref={registrationRef}
+                  className={styles.input}
+                  type="date"
+                  name="registration"
+                  defaultValue={today}
+                  placeholder="registration"
+                />
+              </div>
+            </div>
+
+            <div className={styles.formbox}>
+              <div className={styles.formgroup}>
+                <label>성별 </label>
+                <div className={styles.labelbox}>
+                  <label className={styles.gender}>
+                    <input
+                      ref={genderRef}
+                      className={styles.input}
+                      type="radio"
+                      name="woman"
+                      checked
+                    />
+                    여자
+                  </label>
+
+                  <label className={styles.gender}>
+                    <input
+                      ref={genderRef}
+                      className={styles.input}
+                      type="radio"
+                      name="man"
+                    />
+                    남자
+                  </label>
+                </div>
+              </div>
+
+              <div className={styles.formgroup}>
+                <label>전화번호 </label>
+                <input
+                  className={styles.input}
+                  type="text"
+                  name="phone"
+                  required
+                  pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
+                  maxLength="11"
+                  placeholder="하이픈(-)없이 입력"
+                  onChange={handlePress}
+                />
+              </div>
+              <div className={styles.formgroup}>
+                <label>구분</label>
+                <select
+                  ref={discountRef}
+                  className={styles.input}
+                  name="discount"
+                  placeholder="Discount"
+                  onChange={onChangeDiscount}
+                >
+                  <option value="일반">일반</option>
+                  <option value="할인">할인</option>
+                </select>
+              </div>
+
+              <div className={styles.formgroup}>
+                <label>등록기간 </label>
+                <select
+                  ref={periodRef}
+                  className={styles.input}
+                  name="period"
+                  placeholder="Period"
+                >
+                  <option value="1개월">1개월</option>
+                  <option value="3개월">3개월</option>
+                  <option value="6개월">6개월</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <Button name="Add" onClick={onSubmit} />
+
+          <div className={styles.formgroup}>
+            <label>자기소개 :</label>
+            <textarea
+              ref={messageRef}
+              className={styles.input}
+              name="message"
+              placeholder="Message"
+            ></textarea>
+          </div>
+
+          <div className={styles.pricegroup}>
+            <p className={styles.price}>
+              결제금액 : {new Intl.NumberFormat().format(payPrice)}
+            </p>
+            <p className={styles.price}>
+              할인금액 : {new Intl.NumberFormat().format(sale)}
+            </p>
+            <p className={styles.price}>
+              총 결제금액 :{new Intl.NumberFormat().format(payPrice - sale)}
+            </p>
+          </div>
+          <div className={styles.buttonbox}>
+            <div className={styles.fileInput}>
+              <FileInput naem={file.fileName} onFileChange={onFileChange} />
+            </div>
+            <Button name="Add" onClick={onSubmit} />
+          </div>
         </form>
       </div>
     );

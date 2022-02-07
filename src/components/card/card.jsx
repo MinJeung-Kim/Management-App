@@ -27,6 +27,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
 
   const onSubmit = () => {
     deleteCard(card);
+    fnCloseDetail();
   };
 
   const fnCloseDetail = () => {
@@ -79,7 +80,19 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
       </li>
       <li className={styles.card}>
         <div className={styles.info}>
-          <p className={styles.job}>
+          <div className={styles.formgroup}>
+            전화번호 :
+            <input
+              type="text"
+              name="phone"
+              required
+              pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
+              maxLength="11"
+              onChange={onChange}
+              defaultValue={phone}
+            />
+          </div>
+          <div className={styles.formgroup}>
             직업 :
             <input
               type="text"
@@ -87,8 +100,8 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               defaultValue={job}
               onChange={onChange}
             />
-          </p>
-          <p className={styles.discount}>
+          </div>
+          <div className={styles.formgroup}>
             구분 :
             <select
               className={styles.select}
@@ -99,8 +112,8 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               <option value="일반">일반</option>
               <option value="할인">할인</option>
             </select>
-          </p>
-          <p className={styles.registration}>
+          </div>
+          <div className={styles.formgroup}>
             등록일 :
             <input
               type="date"
@@ -108,8 +121,8 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               defaultValue={registration}
               onChange={onChange}
             />
-          </p>
-          <p className={styles.period}>
+          </div>
+          <div className={styles.formgroup}>
             등록기간 :
             <select
               className={styles.select}
@@ -121,24 +134,10 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               <option value="3개월">3개월</option>
               <option value="6개월">6개월</option>
             </select>
-          </p>
-          <p className={styles.phone}>
-            전화번호 :
-            <input
-              type="text"
-              name="phone"
-              required
-              pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
-              maxLength="11"
-              defaultValue={phone
-                .replace(/[^0-9]/, "")
-                .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)}
-              onChange={onChange}
-            />
-          </p>
+          </div>
         </div>
         <div>
-          <p className={styles.message}>
+          <div className={styles.formgroup}>
             자기소개 :
             <textarea
               className={styles.textarea}
@@ -146,7 +145,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               defaultValue={message}
               onChange={onChange}
             ></textarea>
-          </p>
+          </div>
         </div>
       </li>
       <Button name="Delete" onClick={onSubmit} />

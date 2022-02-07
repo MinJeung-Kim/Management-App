@@ -1,17 +1,19 @@
 @value makerBlack, makerWhite from '../../common/colors.css';
 
 .cardAddForm {
-  display: flex;
-  flex-wrap: wrap;
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   box-shadow: rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem,
     rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem;
   border-radius: 0.75rem;
   border: 0px solid rgba(0, 0, 0, 0.125);
   padding: 16px;
-  margin-bottom: 1em;
+  padding-bottom: 3rem;
   background: white;
 }
+
 .close {
   font-size: 3.25rem;
   font-weight: lighter;
@@ -19,32 +21,76 @@
   cursor: pointer;
 }
 
+.title {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 3.5rem;
+  margin-top: 0;
+}
+
 .form {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+.section {
+  display: flex;
+}
+
+.formbox {
   width: 100%;
-  flex-wrap: wrap;
-  border-top: 1px solid makerBlack;
-  border-left: 1px solid makerBlack;
-  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.formgroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.formgroup textarea {
+  width: 90%;
+}
+
+.labelbox {
+  padding: 0.375rem 0.75rem;
+}
+
+.gender {
+  width: 5rem;
+}
+
+.gender input {
+  width: 1.5rem;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.buttonbox {
+  display: flex;
+  padding-right: 3.5rem;
 }
 
 .input,
-.textarea,
-.select,
-.button,
 .fileInput {
-  font-size: 0.8rem;
-  width: 100%;
-  border: 0;
-  padding: 0.5em;
-  border-bottom: 1px solid makerBlack;
-  border-right: 1px solid makerBlack;
-  background: makerWhite;
-}
-
-.input,
-.select {
-  flex: 1 1 30%;
+  width: 80%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }
 
 .fileInput {
@@ -52,13 +98,12 @@
   flex: 1 1 50%;
 }
 
-.input:focus,
-.textarea:focus,
-.select:focus,
-.button:focus {
+.input:focus {
   outline: 0;
 }
 
-.textarea {
-  flex-basis: 100%;
+.pricegroup {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
 }

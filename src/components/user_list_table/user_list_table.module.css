@@ -79,8 +79,9 @@ td {
 }
 
 td {
-  color: rgb(52, 71, 103);
+  font-size: 0.875rem;
   font-weight: 600;
+  color: rgb(52, 71, 103);
 }
 
 td i {
@@ -120,7 +121,7 @@ img {
 
 .add {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   font-size: 1.25rem;
 }
 

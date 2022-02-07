@@ -31,7 +31,7 @@ const DdayCountDown = ({ registration, period }) => {
 
     leading0(days) === 0 ? setTheme("alert") : setTheme("base");
     return () => getTimeUntil(deadline);
-  }, [deadline]);
+  }, [deadline, days]);
 
   return (
     <div>
