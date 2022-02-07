@@ -43,7 +43,6 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
     registration,
     message,
     period,
-    theme,
     fileURL,
     fileName,
   } = card;
@@ -57,9 +56,9 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
       <li className={styles.profile}>
         <div className={styles.imagLeft}>
           <img className={styles.avatar} src={url} alt="profile" />
-          {/* <i className="fas fa-cog">
+          <i className="fas fa-cog">
             <FileInput name={fileName} onFileChange={onFileChange} />
-          </i> */}
+          </i>
         </div>
         <div className={styles.imagRight}>
           <input
@@ -78,7 +77,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
           />
         </div>
       </li>
-      <li className={`${styles.card} ${getStyles(theme)}`}>
+      <li className={styles.card}>
         <div className={styles.info}>
           <p className={styles.job}>
             직업 :
@@ -154,18 +153,5 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
     </>
   );
 });
-
-function getStyles(theme) {
-  switch (theme) {
-    case "dark":
-      return styles.dark;
-    case "light":
-      return styles.light;
-    case "colorful":
-      return styles.colorful;
-    default:
-      throw new Error(`unknown theme: ${theme}`);
-  }
-}
 
 export default Card;

@@ -1,4 +1,4 @@
-@value makerGreen from '../../common/colors.css';
+@value makerGreen, modalBackground from '../../common/colors.css';
 
 .preview {
   position: absolute;
@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #46454561;
+  background: modalBackground;
 }
 
 .title {

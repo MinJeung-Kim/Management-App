@@ -1,6 +1,8 @@
 @value makerGrey, makerShadow, makerPink, makerWhite, makerBlue from '../../common/colors.css';
 
 .list {
+  position: relative;
+  width: 100%;
   padding: 24px;
 }
 
@@ -28,8 +30,12 @@
   color: rgb(123, 128, 154);
 }
 
-.thead {
-  color: makerGrey;
+.top i {
+  font-weight: 700;
+  color: makerBlue;
+  margin-top: -4px;
+  font-size: inherit !important;
+  margin-right: 0.3rem;
 }
 
 .title {
@@ -41,14 +47,6 @@
   margin: 0px 0px 0.35em;
 }
 
-.top i {
-  font-weight: 700;
-  color: makerBlue;
-  margin-top: -4px;
-  font-size: inherit !important;
-  margin-right: 0.3rem;
-}
-
 .subtitle {
   color: rgb(123, 128, 154);
   font-weight: 400;
@@ -56,10 +54,6 @@
   line-height: 1.5;
   letter-spacing: 0.02857em;
   text-align: left;
-}
-
-.tbody tr {
-  border-bottom: 1px solid #f7f7f8;
 }
 
 th {
@@ -72,7 +66,6 @@ th {
 tr {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   border-bottom: 1px solid #e5e8f5;
 }
 
@@ -81,7 +74,7 @@ td {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 7.5rem;
+  min-width: 3rem;
   height: 50px;
 }
 
@@ -99,10 +92,22 @@ td i:hover {
   color: makerPink;
 }
 
+.thead {
+  color: makerGrey;
+}
+
+.tbody tr {
+  border-bottom: 1px solid #f7f7f8;
+}
+
 .profile {
   display: flex;
+  width: 85px;
+  min-width: 3rem;
   align-items: center;
   justify-content: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 img {
@@ -111,4 +116,15 @@ img {
   border: 2px solid #fff;
   border-radius: 50%;
   margin-right: 0.5rem;
+}
+
+.add {
+  display: flex;
+  justify-content: end;
+  font-size: 1.25rem;
+}
+
+.add i:hover {
+  cursor: pointer;
+  color: makerPink;
 }

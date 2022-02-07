@@ -7,9 +7,12 @@
   max-width: 80rem;
   position: relative;
   display: flex;
-  flex-direction: column;
-  padding: 24px;
+  justify-content: space-between;
   background-color: makerLightGrey;
+}
+
+.main {
+  flex: 4;
 }
 
 .container {

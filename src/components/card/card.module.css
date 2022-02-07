@@ -35,19 +35,6 @@
   max-width: 30rem;
 }
 
-.card.dark {
-  background-color: makerBlack;
-  color: makerWhite;
-}
-
-.card.light {
-  color: makerBlack;
-}
-
-.card.colorful {
-  background: makerColorful;
-}
-
 .avatar {
   width: 4.625rem;
   height: 4.625rem;

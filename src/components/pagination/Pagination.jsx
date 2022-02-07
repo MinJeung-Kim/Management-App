@@ -52,6 +52,7 @@ const Button = styled.button`
 
   &[aria-current] {
     background: rgb(26, 115, 232);
+    border: 1px solid rgb(26, 115, 232) !important;
     border: none;
     font-weight: bold;
     cursor: revert;

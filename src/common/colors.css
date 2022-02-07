@@ -6,7 +6,7 @@
 
 @value makerGrey: #626262;
 
-@value makerLightGrey: rgb(240, 242, 245);
+@value makerLightGrey: #f8f9fa;
 
 @value makerGreen: #385461;
 
@@ -18,4 +18,6 @@
 
 @value makerColorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
 
-@value makerWheat: wheat;
+@value makerRed: #eb2f06;
+
+@value modalBackground: #46454561;

@@ -16,7 +16,6 @@ const FileInput = memo((props) => (
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* 컴포넌트 props인 경우 대문자로 시작 */}
     <App
       authService={authService}
       FileInput={FileInput}

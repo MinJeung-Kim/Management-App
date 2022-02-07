@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import styles from "./dday_count_down.module.css";
 
 const DdayCountDown = ({ registration, period }) => {
+  const [theme, setTheme] = useState("base");
+
   const dday = new Date(registration);
   const yyyy = dday.getFullYear();
   const mm = dday.getMonth() + 1 + parseInt(period);
@@ -24,17 +27,33 @@ const DdayCountDown = ({ registration, period }) => {
   };
 
   useEffect(() => {
-    setInterval(() => getTimeUntil(deadline), 10000);
+    setInterval(() => getTimeUntil(deadline), 1000);
 
+    leading0(days) === 0 ? setTheme("alert") : setTheme("base");
     return () => getTimeUntil(deadline);
   }, [deadline]);
 
-  console.log(leading0(days));
   return (
     <div>
-      <div className="Clock-days">D-{leading0(days)} </div>
+      <div className="Clock-days">
+        D
+        <span className={`${styles.card} ${getStyles(theme)}`}>
+          -{leading0(days)}
+        </span>
+      </div>
     </div>
   );
 };
+
+function getStyles(theme) {
+  switch (theme) {
+    case "base":
+      return styles.base;
+    case "alert":
+      return styles.alert;
+    default:
+      throw new Error(`unknown theme: ${theme}`);
+  }
+}
 
 export default DdayCountDown;

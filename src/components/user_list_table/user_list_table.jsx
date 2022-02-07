@@ -95,18 +95,17 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
               </tr>
             ))}
 
-          <footer>
-            <Pagination
-              total={Object.keys(cards).length}
-              limit={limit}
-              page={page}
-              setPage={setPage}
-            />
-          </footer>
+          <Pagination
+            total={Object.keys(cards).length}
+            limit={limit}
+            page={page}
+            setPage={setPage}
+          />
+          <div className={styles.add}>
+            <i className="fas fa-edit" onClick={fnOpenEditor}></i>
+          </div>
         </tbody>
       </table>
-
-      <i className="fas fa-edit" onClick={fnOpenEditor}></i>
     </div>
   );
 };

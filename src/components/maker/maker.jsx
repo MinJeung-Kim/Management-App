@@ -6,6 +6,7 @@ import Header from "../header/header";
 import UserListTable from "../user_list_table/user_list_table";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
+import SideBar from "../side_bar/side_bar";
 
 const Maker = ({ FileInput, authService, cardRepository }) => {
   const history = useHistory();
@@ -70,9 +71,10 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
 
   return (
     <section className={styles.maker}>
-      <Header onLogout={onLogout} />
-      <div className={styles.container}>
-        <div>
+      <SideBar />
+      <div className={styles.main}>
+        <Header onLogout={onLogout} />
+        <div className={styles.container}>
           <UserListTable
             cards={cards}
             openEditor={setOpenEditor}
@@ -86,21 +88,22 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
               payPrice={payPrice}
               sale={sale}
               setSale={setSale}
+              openEditor={setOpenEditor}
+            />
+          )}
+          {openDetail && (
+            <Preview
+              FileInput={FileInput}
+              cards={cards}
+              updateCard={createOrUpdateCard}
+              deleteCard={deleteCard}
+              openDetail={setOpenDetail}
+              cardId={cardId}
             />
           )}
         </div>
-        {openDetail && (
-          <Preview
-            FileInput={FileInput}
-            cards={cards}
-            updateCard={createOrUpdateCard}
-            deleteCard={deleteCard}
-            openDetail={setOpenDetail}
-            cardId={cardId}
-          />
-        )}
+        <Footer />
       </div>
-      <Footer />
     </section>
   );
 };

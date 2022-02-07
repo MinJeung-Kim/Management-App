@@ -1,0 +1,9 @@
+@value makerBlue, makerRed from '../../common/colors.css';
+
+.base {
+  color: makerBlue;
+}
+
+.alert {
+  color: makerRed;
+}

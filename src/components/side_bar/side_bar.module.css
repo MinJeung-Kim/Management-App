@@ -1,0 +1,49 @@
+@value makerWhite from '../../common/colors.css';
+
+aside {
+  min-width: 18rem;
+}
+
+.sidebar {
+  width: 100%;
+  height: 95vh;
+  max-width: 15.625rem;
+  box-shadow: 0 0 2rem 0 rgb(136 152 170 / 15%);
+  background-color: makerWhite;
+  border-radius: 1rem;
+  margin-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.sidebar li {
+  padding-right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #67748e;
+  padding-top: 0.675rem;
+  padding-bottom: 0.675rem;
+  margin: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.sidebar li:hover {
+  cursor: pointer;
+}
+
+.sidebar li i {
+  padding: 10px;
+}
+
+.dashboard i {
+  color: #5e72e4;
+}
+
+.tables i {
+  color: #f56565;
+}
+
+.billing i {
+  color: #20c997;
+}
