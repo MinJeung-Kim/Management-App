@@ -16,6 +16,17 @@ const CardAddForm = memo(
     const [phone, setPhone] = useState("");
     const [gender, setGender] = useState("여자");
 
+    const getDate = () => {
+      const date = new Date();
+      const today =
+        date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1).toString().padStart(2, "0") +
+        "-" +
+        date.getDate().toString().padStart(2, "0");
+      return today;
+    };
+
     useEffect(() => {
       if (phone.length === 10) {
         setPhone(phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
@@ -27,27 +38,18 @@ const CardAddForm = memo(
       }
     }, [phone]);
 
-    const date = new Date();
-    const today =
-      date.getFullYear() +
-      "-" +
-      (date.getMonth() + 1).toString().padStart(2, "0") +
-      "-" +
-      date.getDate().toString().padStart(2, "0");
-
-    const onFileChange = (file) => {
-      console.log(file);
-      setFile({
-        fileName: file.name,
-        fileURL: file.url,
-      });
-    };
-
     const handlePress = (e) => {
       const regex = /^[0-9\b -]{0,13}$/;
       if (regex.test(e.target.value)) {
         setPhone(e.target.value);
       }
+    };
+
+    const onFileChange = (file) => {
+      setFile({
+        fileName: file.name,
+        fileURL: file.url,
+      });
     };
 
     const onChangeDiscount = () => {
@@ -77,8 +79,11 @@ const CardAddForm = memo(
       } else if (card.phone === "") {
         return alert("전화번호를 입력하세요");
       }
+
       formRef.current.reset();
+
       setFile({ fileName: null, fileURL: null });
+
       onAdd(card);
     };
 
@@ -147,7 +152,7 @@ const CardAddForm = memo(
                   className={styles.input}
                   type="date"
                   name="registration"
-                  defaultValue={today}
+                  defaultValue={getDate()}
                   placeholder="registration"
                 />
               </div>
