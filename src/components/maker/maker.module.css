@@ -12,6 +12,7 @@
 }
 
 .main {
+  position: relative;
   flex: 4;
 }
 

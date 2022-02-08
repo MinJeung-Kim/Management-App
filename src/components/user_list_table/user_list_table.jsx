@@ -27,7 +27,8 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
             <div className={styles.top}>
               <span className={styles.title}>회원관리</span>
               <p className={styles.subtitle}>
-                <i className="fas fa-check"></i>30 done this month
+                <i className="fas fa-check"></i>
+                {Object.keys(cards).length} done this total
               </p>
             </div>
             <label>

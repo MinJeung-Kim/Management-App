@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./side_bar.module.css";
 
 const SideBar = () => {
@@ -5,13 +6,19 @@ const SideBar = () => {
     <aside>
       <ul className={styles.sidebar}>
         <li className={styles.dashboard}>
-          <i className="fas fa-chart-line"></i>Dashboard
+          <Link to="/dashboard">
+            <i className="fas fa-chart-line"></i>Dashboard
+          </Link>
         </li>
         <li className={styles.tables}>
-          <i className="fas fa-user"></i>Tables
+          <Link to="/maker">
+            <i className="fas fa-user"></i>Tables
+          </Link>
         </li>
         <li className={styles.billing}>
-          <i className="far fa-credit-card"></i>Billing
+          <Link to="/billing">
+            <i className="far fa-credit-card"></i>Billing
+          </Link>
         </li>
       </ul>
     </aside>

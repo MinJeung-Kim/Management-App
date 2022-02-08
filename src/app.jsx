@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styles from "./app.module.css";
+import Billing from "./components/billing/billing";
+import Dashboard from "./components/dashboard/dashboard";
 import Login from "./components/login/login";
 import Maker from "./components/maker/maker";
 
@@ -18,6 +20,12 @@ function App({ FileInput, authService, cardRepository }) {
               authService={authService}
               cardRepository={cardRepository}
             />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/billing">
+            <Billing />
           </Route>
         </Switch>
       </BrowserRouter>
