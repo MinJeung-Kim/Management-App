@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styles from "../input/input.module.css";
 
-const Select = memo(({ label, name, value }) => {
+const Select = memo(({ label, name, value, onChange }) => {
   return (
     <div className={styles.formgroup}>
       <label>{label} </label>
@@ -10,6 +10,7 @@ const Select = memo(({ label, name, value }) => {
         name={name}
         defaultValue={name}
         placeholder={name}
+        onChange={onChange}
       >
         {value.map((item) => (
           <option value={item}>{item}</option>
