@@ -34,6 +34,14 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
     openDetail(false);
   };
 
+  const fnCheckCharCode = (event) => {
+    const regExp = /[^0-9a-zA-Z]/g;
+    const ele = event.target;
+    if (regExp.test(ele.value)) {
+      ele.value = ele.value.replace(regExp, "");
+    }
+  };
+
   // card에 있는 모든 정보 전달
   const {
     name,
@@ -85,11 +93,10 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
             <input
               type="text"
               name="phone"
-              required
-              pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
-              maxLength="11"
-              onChange={onChange}
               defaultValue={phone}
+              maxLength="11"
+              onKeyUp={fnCheckCharCode}
+              onChange={onChange}
             />
           </div>
           <div className={styles.formgroup}>

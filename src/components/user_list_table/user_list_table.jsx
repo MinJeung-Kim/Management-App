@@ -6,7 +6,7 @@ import styles from "./user_list_table.module.css";
 const DEFAULT_IMAGE = "/images/default_logo.png";
 
 const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
 
@@ -37,7 +37,7 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                 value={limit}
                 onChange={({ target: { value } }) => setLimit(Number(value))}
               >
-                <option value="3">3</option>
+                <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
@@ -78,7 +78,7 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                 <td>{cards[key].job}</td>
                 <td>{cards[key].discount}</td>
                 <td>{cards[key].registration}</td>
-                <td> {cards[key].period}</td>
+                <td>{cards[key].period}</td>
                 <td>
                   <i
                     className="fas fa-pencil-alt"

@@ -86,6 +86,14 @@ const CardAddForm = memo(
       openEditor(false);
     };
 
+    const fnCheckCharCode = (event) => {
+      const regExp = /[^0-9a-zA-Z]/g;
+      const ele = event.target;
+      if (regExp.test(ele.value)) {
+        ele.value = ele.value.replace(regExp, "");
+      }
+    };
+
     return (
       <div className={styles.cardAddForm}>
         <div className={styles.close}>
@@ -96,7 +104,7 @@ const CardAddForm = memo(
           <div className={styles.section}>
             <div className={styles.formbox}>
               <div className={styles.formgroup}>
-                <label>이름 </label>
+                <label>*이름</label>
                 <input
                   ref={nameRef}
                   className={styles.input}
@@ -128,7 +136,7 @@ const CardAddForm = memo(
                 />
               </div>
               <div className={styles.formgroup}>
-                <label>등록일 </label>
+                <label>*등록일 </label>
                 <input
                   ref={registrationRef}
                   className={styles.input}
@@ -142,7 +150,7 @@ const CardAddForm = memo(
 
             <div className={styles.formbox}>
               <div className={styles.formgroup}>
-                <label>성별 </label>
+                <label>*성별 </label>
                 <div className={styles.labelbox}>
                   <label className={styles.gender}>
                     <input
@@ -168,20 +176,19 @@ const CardAddForm = memo(
               </div>
 
               <div className={styles.formgroup}>
-                <label>전화번호 </label>
+                <label>*전화번호 </label>
                 <input
                   className={styles.input}
                   type="text"
                   name="phone"
-                  required
-                  pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}"
                   maxLength="11"
                   placeholder="하이픈(-)없이 입력"
+                  onKeyUp={fnCheckCharCode}
                   onChange={handlePress}
                 />
               </div>
               <div className={styles.formgroup}>
-                <label>구분</label>
+                <label>*구분</label>
                 <select
                   ref={discountRef}
                   className={styles.input}
@@ -195,7 +202,7 @@ const CardAddForm = memo(
               </div>
 
               <div className={styles.formgroup}>
-                <label>등록기간 </label>
+                <label>*등록기간 </label>
                 <select
                   ref={periodRef}
                   className={styles.input}
