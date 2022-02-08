@@ -6,7 +6,6 @@ const CardAddForm = memo(
   ({ FileInput, onAdd, payPrice, sale, setSale, openEditor }) => {
     const formRef = useRef();
     const nameRef = useRef();
-    const genderRef = useRef();
     const ageRef = useRef();
     const jobRef = useRef();
     const discountRef = useRef();
@@ -15,6 +14,7 @@ const CardAddForm = memo(
     const messageRef = useRef();
     const [file, setFile] = useState({ fileName: null, fileURL: null });
     const [phone, setPhone] = useState("");
+    const [gender, setGender] = useState("여자");
 
     useEffect(() => {
       if (phone.length === 10) {
@@ -60,7 +60,7 @@ const CardAddForm = memo(
       const card = {
         id: Date.now(), //uuid
         name: nameRef.current.value || "",
-        gender: genderRef.current.value || "",
+        gender: gender || "",
         age: parseInt(ageRef.current.value) || "-",
         job: jobRef.current.value || "기타",
         phone: phone || "",
@@ -92,6 +92,10 @@ const CardAddForm = memo(
       if (regExp.test(ele.value)) {
         ele.value = ele.value.replace(regExp, "");
       }
+    };
+
+    const fnChangeGender = (event) => {
+      setGender(event.target.value);
     };
 
     return (
@@ -155,21 +159,24 @@ const CardAddForm = memo(
                 <div className={styles.labelbox}>
                   <label className={styles.gender}>
                     <input
-                      ref={genderRef}
                       className={styles.input}
                       type="radio"
-                      name="woman"
-                      checked
+                      value="여자"
+                      name="gender"
+                      checked={gender === "여자"}
+                      onChange={fnChangeGender}
                     />
                     여자
                   </label>
 
                   <label className={styles.gender}>
                     <input
-                      ref={genderRef}
                       className={styles.input}
                       type="radio"
-                      name="man"
+                      value="남자"
+                      name="gender"
+                      checked={gender === "남자"}
+                      onChange={fnChangeGender}
                     />
                     남자
                   </label>

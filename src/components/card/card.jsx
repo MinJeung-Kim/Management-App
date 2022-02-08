@@ -45,6 +45,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   // card에 있는 모든 정보 전달
   const {
     name,
+    gender,
     age,
     job,
     phone,
@@ -59,6 +60,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   return (
     <>
       <div className={styles.close}>
+        <span>Edit Profile</span>
         <i className="far fa-times-circle" onClick={fnCloseDetail}></i>
       </div>
 
@@ -86,7 +88,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
                 className={styles.gender}
                 type="text"
                 name="gender"
-                defaultValue={"여자"}
+                defaultValue={gender}
               />
             </div>
           </div>
