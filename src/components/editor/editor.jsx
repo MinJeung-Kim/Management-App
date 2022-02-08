@@ -11,7 +11,6 @@ const Editor = ({
   openEditor,
 }) => (
   <section className={styles.editor}>
-    <h1 className={styles.title}>Card Maker</h1>
     <CardAddForm
       FileInput={FileInput}
       onAdd={addCard}

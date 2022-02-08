@@ -100,6 +100,7 @@ const CardAddForm = memo(
           <i className="far fa-times-circle" onClick={fnCloseDetail}></i>
         </div>
         <h1 className={styles.title}>회원 등록</h1>
+        <hr className={styles.horizontal} />
         <form ref={formRef} className={styles.form}>
           <div className={styles.section}>
             <div className={styles.formbox}>

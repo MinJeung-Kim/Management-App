@@ -65,55 +65,84 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
       <li className={styles.profile}>
         <div className={styles.imagLeft}>
           <img className={styles.avatar} src={url} alt="profile" />
+          <div className={styles.avatarinfo}>
+            <input
+              className={styles.name}
+              type="text"
+              name="name"
+              defaultValue={name}
+              onChange={onChange}
+            />
+            <div className={styles.subinfo}>
+              <input
+                className={styles.age}
+                type="number"
+                name="age"
+                defaultValue={age}
+                onChange={onChange}
+              />
+              /
+              <input
+                className={styles.gender}
+                type="text"
+                name="gender"
+                defaultValue={"여자"}
+              />
+            </div>
+          </div>
+        </div>
+        <div className={styles.imagRight}>
           <i className="fas fa-cog">
             <FileInput name={fileName} onFileChange={onFileChange} />
           </i>
         </div>
-        <div className={styles.imagRight}>
-          <input
-            className={styles.name}
-            type="text"
-            name="name"
-            defaultValue={name}
-            onChange={onChange}
-          />
-          <input
-            className={styles.age}
-            type="number"
-            name="age"
-            defaultValue={age}
-            onChange={onChange}
-          />
-        </div>
       </li>
+      <hr className={styles.horizontal} />
+
       <li className={styles.card}>
-        <div className={styles.info}>
+        <div className={styles.formbox}>
           <div className={styles.formgroup}>
-            전화번호 :
+            <label>전화번호 </label>
             <input
+              className={styles.input}
               type="text"
               name="phone"
-              defaultValue={phone}
               maxLength="11"
+              defaultValue={phone}
+              placeholder="하이픈(-)없이 입력"
               onKeyUp={fnCheckCharCode}
               onChange={onChange}
             />
           </div>
           <div className={styles.formgroup}>
-            직업 :
+            <label>직업</label>
             <input
+              className={styles.input}
               type="text"
               name="job"
               defaultValue={job}
+              placeholder="Job"
               onChange={onChange}
             />
           </div>
           <div className={styles.formgroup}>
-            구분 :
+            <label> 등록일 </label>
+            <input
+              className={styles.input}
+              type="date"
+              name="registration"
+              defaultValue={registration}
+              placeholder="registration"
+              onChange={onChange}
+            />
+          </div>
+          <div className={styles.formgroup}>
+            <label>구분</label>
             <select
-              className={styles.select}
+              className={styles.input}
               name="discount"
               defaultValue={discount}
+              placeholder="Discount"
               onChange={onChange}
             >
               <option value="일반">일반</option>
@@ -121,20 +150,12 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
             </select>
           </div>
           <div className={styles.formgroup}>
-            등록일 :
-            <input
-              type="date"
-              name="registration"
-              defaultValue={registration}
-              onChange={onChange}
-            />
-          </div>
-          <div className={styles.formgroup}>
-            등록기간 :
+            <label>등록기간 </label>
             <select
-              className={styles.select}
+              className={styles.input}
               name="period"
               defaultValue={period}
+              placeholder="Period"
               onChange={onChange}
             >
               <option value="1개월">1개월</option>
@@ -143,11 +164,12 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
             </select>
           </div>
         </div>
-        <div>
+
+        <div className={styles.formbox}>
           <div className={styles.formgroup}>
-            자기소개 :
+            <label>자기소개 </label>
             <textarea
-              className={styles.textarea}
+              className={styles.input}
               name="message"
               defaultValue={message}
               onChange={onChange}
