@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import Button from "../button/button";
+import Button from "../../common/button/button";
 import styles from "./card_add_form.module.css";
 
 const CardAddForm = memo(

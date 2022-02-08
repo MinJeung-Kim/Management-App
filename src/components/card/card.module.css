@@ -18,7 +18,9 @@
 }
 
 .profile {
+  width: 100%;
   display: flex;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -38,14 +40,9 @@
 }
 
 .card {
-  display: flex;
-  align-items: center;
   width: 100%;
-  border-radius: 1em;
-  margin-bottom: 0.5em;
-  padding: 0.2em 0;
-  box-shadow: 6px 6px 8px 0px makerShadow;
-  max-width: 30rem;
+  display: flex;
+  padding-left: 3rem;
 }
 
 .avatar {

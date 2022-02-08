@@ -1,5 +1,8 @@
 import React, { memo } from "react";
-import Button from "../button/button";
+import Button from "../../common/button/button";
+import Input from "../../common/input/input";
+import { input, select } from "../../common/input/labelData";
+import Select from "../../common/select/select";
 import styles from "./card.module.css";
 
 const DEFAULT_IMAGE = "/images/default_logo.png";
@@ -103,7 +106,21 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
 
       <li className={styles.card}>
         <div className={styles.formbox}>
-          <div className={styles.formgroup}>
+          {input.map((item) => (
+            <Input
+              label={item.label}
+              type={item.type}
+              name={item.name}
+              value={item.name === card[item.name]}
+              onChange={onChange}
+            />
+          ))}
+
+          {select.map((item) => (
+            <Select label={item.label} name={item.name} value={item.value} />
+          ))}
+
+          {/* <div className={styles.formgroup}>
             <label>전화번호 </label>
             <input
               className={styles.input}
@@ -164,7 +181,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               <option value="3개월">3개월</option>
               <option value="6개월">6개월</option>
             </select>
-          </div>
+          </div>*/}
         </div>
 
         <div className={styles.formbox}>
