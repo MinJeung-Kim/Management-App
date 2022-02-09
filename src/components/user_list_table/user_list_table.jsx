@@ -19,6 +19,19 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
     openDetail(true);
   };
 
+  const pageValue = ["5", "10", "15", "20"];
+  const tableTitle = [
+    "이름",
+    "나이",
+    "전화번호",
+    "직업",
+    "구분",
+    "등록일",
+    "등록기간",
+    "비고",
+    "D-Day",
+  ];
+
   return (
     <div className={styles.list}>
       <table className={styles.table}>
@@ -38,24 +51,17 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                 value={limit}
                 onChange={({ target: { value } }) => setLimit(Number(value))}
               >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
+                {pageValue.map((item) => (
+                  <option value={item}>{item}</option>
+                ))}
               </select>
             </label>
           </div>
 
           <tr className={styles.thead}>
-            <th>이름</th>
-            <th>나이</th>
-            <th>전화번호</th>
-            <th>직업</th>
-            <th>구분</th>
-            <th>등록일</th>
-            <th>등록기간</th>
-            <th>비고</th>
-            <th>D-Day</th>
+            {tableTitle.map((title) => (
+              <th>{title}</th>
+            ))}
           </tr>
         </thead>
         <tbody className={styles.tbody}>

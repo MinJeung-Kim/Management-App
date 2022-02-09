@@ -1,5 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import Button from "../../common/button/button";
+import Input from "../../common/input/input";
+import Select from "../../common/select/select";
 import styles from "./card_add_form.module.css";
 
 const CardAddForm = memo(
@@ -12,20 +14,9 @@ const CardAddForm = memo(
     const periodRef = useRef();
     const registrationRef = useRef();
     const messageRef = useRef();
-    const [file, setFile] = useState({ fileName: null, fileURL: null });
     const [phone, setPhone] = useState("");
     const [gender, setGender] = useState("여자");
-
-    const getDate = () => {
-      const date = new Date();
-      const today =
-        date.getFullYear() +
-        "-" +
-        (date.getMonth() + 1).toString().padStart(2, "0") +
-        "-" +
-        date.getDate().toString().padStart(2, "0");
-      return today;
-    };
+    const [file, setFile] = useState({ fileName: null, fileURL: null });
 
     useEffect(() => {
       if (phone.length === 10) {
@@ -38,11 +29,19 @@ const CardAddForm = memo(
       }
     }, [phone]);
 
-    const handlePress = (e) => {
-      const regex = /^[0-9\b -]{0,13}$/;
-      if (regex.test(e.target.value)) {
-        setPhone(e.target.value);
-      }
+    const fnCloseDetail = () => {
+      openEditor(false);
+    };
+
+    const getDate = () => {
+      const date = new Date();
+      const today =
+        date.getFullYear() +
+        "-" +
+        (date.getMonth() + 1).toString().padStart(2, "0") +
+        "-" +
+        date.getDate().toString().padStart(2, "0");
+      return today;
     };
 
     const onFileChange = (file) => {
@@ -52,8 +51,27 @@ const CardAddForm = memo(
       });
     };
 
-    const onChangeDiscount = () => {
+    const onDiscountChange = () => {
       discountRef.current.value === "할인" ? setSale(1000) : setSale(0);
+    };
+
+    const onGenderChange = (event) => {
+      setGender(event.target.value);
+    };
+
+    const onCharCodeCheck = (event) => {
+      const regExp = /[^0-9a-zA-Z]/g;
+      const ele = event.target;
+      if (regExp.test(ele.value)) {
+        ele.value = ele.value.replace(regExp, "");
+      }
+    };
+
+    const onAddHypen = (e) => {
+      const regex = /^[0-9\b -]{0,13}$/;
+      if (regex.test(e.target.value)) {
+        setPhone(e.target.value);
+      }
     };
 
     const onSubmit = (event) => {
@@ -87,21 +105,20 @@ const CardAddForm = memo(
       onAdd(card);
     };
 
-    const fnCloseDetail = () => {
-      openEditor(false);
-    };
+    const leftContent = [
+      { label: "이름", name: "name", type: "text" },
+      { label: "나이", name: "age", type: "numbe" },
+      { label: "직업", name: "job", type: "text" },
+      { label: "등록일", name: "registration", type: "date" },
+    ];
 
-    const fnCheckCharCode = (event) => {
-      const regExp = /[^0-9a-zA-Z]/g;
-      const ele = event.target;
-      if (regExp.test(ele.value)) {
-        ele.value = ele.value.replace(regExp, "");
-      }
-    };
-
-    const fnChangeGender = (event) => {
-      setGender(event.target.value);
-    };
+    const rightContent = [
+      // { label: "성별", name: "gender", type: "radio" },
+      { label: "전화번호", name: "phone", type: "text" },
+      // { label: "구분", name: "discount" },
+      // { label: "등록기간", name: "period" },
+      // { label: "자기소개", name: "message" },
+    ];
 
     return (
       <div className={styles.cardAddForm}>
@@ -113,7 +130,7 @@ const CardAddForm = memo(
         <form ref={formRef} className={styles.form}>
           <div className={styles.section}>
             <div className={styles.formbox}>
-              <div className={styles.formgroup}>
+              {/* <div className={styles.formgroup}>
                 <label>*이름</label>
                 <input
                   ref={nameRef}
@@ -155,10 +172,41 @@ const CardAddForm = memo(
                   defaultValue={getDate()}
                   placeholder="registration"
                 />
-              </div>
+              </div> */}
+
+              {leftContent.map((title) => (
+                <div className={styles.formgroup}>
+                  <label>{title.label}</label>
+                  <Input
+                    className={styles.input}
+                    ref={`${title.name}Ref`}
+                    type={title.type}
+                    name={title.name}
+                    value={title.name === "registration" && getDate()}
+                    placeholder={title.name}
+                  />
+                </div>
+              ))}
             </div>
 
             <div className={styles.formbox}>
+              {rightContent.map((title) => (
+                <div className={styles.formgroup}>
+                  <label>{title.label}</label>
+                  <Input
+                    className={styles.input}
+                    ref={`${title.name}Ref`}
+                    type={title.type}
+                    name={title.name}
+                    value={title.name === "registration" && getDate()}
+                    placeholder={title.name}
+                  />
+                  {/* <Select /> */}
+                </div>
+              ))}
+            </div>
+
+            {/* <div className={styles.formbox}>
               <div className={styles.formgroup}>
                 <label>*성별 </label>
                 <div className={styles.labelbox}>
@@ -169,7 +217,7 @@ const CardAddForm = memo(
                       value="여자"
                       name="gender"
                       checked={gender === "여자"}
-                      onChange={fnChangeGender}
+                      onChange={onGenderChange}
                     />
                     여자
                   </label>
@@ -181,7 +229,7 @@ const CardAddForm = memo(
                       value="남자"
                       name="gender"
                       checked={gender === "남자"}
-                      onChange={fnChangeGender}
+                      onChange={onGenderChange}
                     />
                     남자
                   </label>
@@ -196,8 +244,8 @@ const CardAddForm = memo(
                   name="phone"
                   maxLength="11"
                   placeholder="하이픈(-)없이 입력"
-                  onKeyUp={fnCheckCharCode}
-                  onChange={handlePress}
+                  onKeyUp={onCharCodeCheck}
+                  onChange={onAddHypen}
                 />
               </div>
               <div className={styles.formgroup}>
@@ -207,7 +255,7 @@ const CardAddForm = memo(
                   className={styles.input}
                   name="discount"
                   placeholder="Discount"
-                  onChange={onChangeDiscount}
+                  onChange={onDiscountChange}
                 >
                   <option value="일반">일반</option>
                   <option value="할인">할인</option>
@@ -227,7 +275,7 @@ const CardAddForm = memo(
                   <option value="6개월">6개월</option>
                 </select>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className={styles.formgroup}>
