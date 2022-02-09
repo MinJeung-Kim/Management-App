@@ -1,5 +1,5 @@
 export const inputTop = [
-  { name: "name", type: "text" },
+  // { name: "name", type: "text" },
   { name: "age", type: "number" },
   { name: "gender", type: "text" },
 ];

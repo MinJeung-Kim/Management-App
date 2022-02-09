@@ -38,19 +38,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   };
 
   // card에 있는 모든 정보 전달
-  const {
-    name,
-    gender,
-    age,
-    job,
-    phone,
-    discount,
-    registration,
-    message,
-    period,
-    fileURL,
-    fileName,
-  } = card;
+  const { name, message, fileURL, fileName } = card;
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <>
@@ -63,7 +51,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
         <div className={styles.imagLeft}>
           <img className={styles.avatar} src={url} alt="profile" />
           <div className={styles.avatarinfo}>
-            {/* <input
+            <input
               className={styles.name}
               type="text"
               name="name"
@@ -71,31 +59,16 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               onChange={onChange}
             />
             <div className={styles.subinfo}>
-              <input
-                className={styles.age}
-                type="number"
-                name="age"
-                defaultValue={age}
-                onChange={onChange}
-              />
-              /
-              <input
-                className={styles.gender}
-                type="text"
-                name="gender"
-                defaultValue={gender}
-                onChange={onChange}
-              />
-            </div> */}
-            {inputTop.map((item) => (
-              <Input
-                className={getStyles(item.name)}
-                type={item.type}
-                name={item.name}
-                value={card[item.name]}
-                onChange={onChange}
-              />
-            ))}
+              {inputTop.map((item) => (
+                <Input
+                  className={getStyles(item.name)}
+                  type={item.type}
+                  name={item.name}
+                  value={card[item.name]}
+                  onChange={onChange}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <div className={styles.imagRight}>
