@@ -10,20 +10,17 @@ const fnCheckCharCode = (event) => {
   }
 };
 
-const Input = memo(({ label, type, name, value, onChange }) => (
-  <div className={styles.formgroup}>
-    <label>{label}</label>
-    <input
-      className={styles.input}
-      type={type}
-      name={name}
-      defaultValue={value}
-      onChange={onChange}
-      placeholder={name === "phone" ? "하이픈(-)없이 입력" : name}
-      maxLength={name === "phone" && "11"}
-      onKeyUp={name === "phone" && fnCheckCharCode}
-    />
-  </div>
+const Input = memo(({ className, type, name, value, onChange }) => (
+  <input
+    className={className}
+    type={type}
+    name={name}
+    defaultValue={value}
+    onChange={onChange}
+    placeholder={name === "phone" ? "하이픈(-)없이 입력" : name}
+    maxLength={name === "phone" && "11"}
+    onKeyUp={name === "phone" && fnCheckCharCode}
+  />
 ));
 
 export default Input;

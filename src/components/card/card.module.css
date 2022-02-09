@@ -56,19 +56,15 @@
   width: 100%;
 }
 
-.name,
-.age,
-.gender {
-  padding: 0 0.5rem;
-  width: auto;
-  border: none;
-  background: transparent;
-}
-
 .formbox {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
 .formgroup {
@@ -98,10 +94,6 @@ label {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-}
-
-.name {
-  font-size: 1.25rem;
 }
 
 .subinfo {

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import Button from "../../common/button/button";
 import Input from "../../common/input/input";
-import { input, select } from "../../common/input/labelData";
+import { input, inputTop, select } from "../../common/input/labelData";
 import Select from "../../common/select/select";
 import styles from "./card.module.css";
 
@@ -63,7 +63,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
         <div className={styles.imagLeft}>
           <img className={styles.avatar} src={url} alt="profile" />
           <div className={styles.avatarinfo}>
-            <input
+            {/* <input
               className={styles.name}
               type="text"
               name="name"
@@ -84,8 +84,18 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
                 type="text"
                 name="gender"
                 defaultValue={gender}
+                onChange={onChange}
               />
-            </div>
+            </div> */}
+            {inputTop.map((item) => (
+              <Input
+                className={getStyles(item.name)}
+                type={item.type}
+                name={item.name}
+                value={card[item.name]}
+                onChange={onChange}
+              />
+            ))}
           </div>
         </div>
         <div className={styles.imagRight}>
@@ -99,22 +109,28 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
       <li className={styles.card}>
         <div className={styles.formbox}>
           {input.map((item) => (
-            <Input
-              label={item.label}
-              type={item.type}
-              name={item.name}
-              value={card[item.name]}
-              onChange={onChange}
-            />
+            <div className={styles.formgroup}>
+              <label>{item.label}</label>
+              <Input
+                className={styles.input}
+                type={item.type}
+                name={item.name}
+                value={card[item.name]}
+                onChange={onChange}
+              />
+            </div>
           ))}
 
           {select.map((item) => (
-            <Select
-              label={item.label}
-              name={item.name}
-              value={item.value}
-              onChange={onChange}
-            />
+            <div className={styles.formgroup}>
+              <label>{item.label} </label>
+              <Select
+                className={styles.input}
+                name={item.name}
+                value={item.value}
+                onChange={onChange}
+              />
+            </div>
           ))}
         </div>
 
@@ -135,4 +151,16 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   );
 });
 
+function getStyles(theme) {
+  switch (theme) {
+    case "name":
+      return styles.name;
+    case "age":
+      return styles.age;
+    case "gender":
+      return styles.gender;
+    default:
+      throw new Error(`unknown theme: ${theme}`);
+  }
+}
 export default Card;

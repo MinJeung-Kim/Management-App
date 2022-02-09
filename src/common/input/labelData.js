@@ -1,7 +1,10 @@
+export const inputTop = [
+  { name: "name", type: "text" },
+  { name: "age", type: "number" },
+  { name: "gender", type: "text" },
+];
+
 export const input = [
-  //   { label: "이름", name: "name", type: "text" },
-  //   { label: "나이", name: "age", type: "number" },
-  //   { label: "성별", name: "gender", type: "text" },
   { label: "전화번호", name: "phone", type: "text" },
   { label: "직업", name: "job", type: "text" },
   { label: "등록일", name: "registration", type: "date" },
