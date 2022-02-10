@@ -52,7 +52,9 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                 onChange={({ target: { value } }) => setLimit(Number(value))}
               >
                 {pageValue.map((item) => (
-                  <option value={item}>{item}</option>
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
                 ))}
               </select>
             </label>
@@ -60,7 +62,7 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
 
           <tr className={styles.thead}>
             {tableTitle.map((title) => (
-              <th>{title}</th>
+              <th key={title}>{title}</th>
             ))}
           </tr>
         </thead>
@@ -77,11 +79,7 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
                   {cards[key].name}
                 </td>
                 <td> {cards[key].age}</td>
-                <td>
-                  {cards[key].phone
-                    .replace(/[^0-9]/, "")
-                    .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`)}
-                </td>
+                <td>{cards[key].phone}</td>
                 <td>{cards[key].job}</td>
                 <td>{cards[key].discount}</td>
                 <td>{cards[key].registration}</td>

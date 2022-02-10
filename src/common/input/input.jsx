@@ -1,28 +1,26 @@
 import React, { memo } from "react";
-import styles from "./input.module.css";
+// import styles from "./input.module.css";
 
 const fnCheckCharCode = (event) => {
-  console.log(event.target);
-  const regExp = /[^0-9a-zA-Z]/g;
+  const regExp = /[^0-9]/g;
   const ele = event.target;
   if (regExp.test(ele.value)) {
     ele.value = ele.value.replace(regExp, "");
   }
 };
 
-const Input = memo(({ className, type, name, value, ref, onChange }) => (
+const Input = memo(({ className, type, name, value, onChange }) => (
   <input
     className={className}
     type={type}
     name={name}
-    ref={ref}
     defaultValue={value}
     onChange={onChange}
     placeholder={name === "phone" ? "하이픈(-)없이 입력" : name}
-    maxLength={name === "phone" && "11"}
-    onKeyUp={name === "phone" && fnCheckCharCode}
-    min={name === "age" && 1}
-    max={name === "age" && 100}
+    maxLength={name === "phone" ? 11 : undefined}
+    onKeyUp={name === "phone" ? fnCheckCharCode : undefined}
+    min={name === "age" ? 1 : undefined}
+    max={name === "age" ? 100 : undefined}
   />
 ));
 

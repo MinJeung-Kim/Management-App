@@ -16,15 +16,15 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
     });
   };
 
-  const onChange = (event) => {
-    if (event.currentTarget == null) {
+  const onChange = (e) => {
+    if (e.currentTarget == null) {
       return;
     }
 
-    event.preventDefault();
+    e.preventDefault();
     updateCard({
       ...card,
-      [event.currentTarget.name]: event.currentTarget.value,
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   };
 
@@ -61,6 +61,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
             <div className={styles.subinfo}>
               {inputTop.map((item) => (
                 <Input
+                  key={item}
                   className={getStyles(item.name)}
                   type={item.type}
                   name={item.name}
@@ -81,8 +82,8 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
 
       <li className={styles.card}>
         <div className={styles.formbox}>
-          {input.map((item) => (
-            <div className={styles.formgroup}>
+          {input.map((item, i) => (
+            <div key={i} className={styles.formgroup}>
               <label>{item.label}</label>
               <Input
                 className={styles.input}
@@ -94,8 +95,8 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
             </div>
           ))}
 
-          {select.map((item) => (
-            <div className={styles.formgroup}>
+          {select.map((item, i) => (
+            <div key={i} className={styles.formgroup}>
               <label>{item.label} </label>
               <Select
                 className={styles.input}

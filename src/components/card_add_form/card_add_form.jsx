@@ -1,33 +1,25 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import Button from "../../common/button/button";
 import Input from "../../common/input/input";
 import Select from "../../common/select/select";
+import { select } from "../../common/input/labelData";
 import styles from "./card_add_form.module.css";
 
 const CardAddForm = memo(
   ({ FileInput, onAdd, payPrice, sale, setSale, openEditor }) => {
     const formRef = useRef();
-    const nameRef = useRef();
-    const ageRef = useRef();
-    const jobRef = useRef();
-    const discountRef = useRef();
-    const periodRef = useRef();
-    const registrationRef = useRef();
-    const messageRef = useRef();
-    const [phone, setPhone] = useState("");
+    const [formItem, setFormItem] = useState({
+      name: "",
+      age: "",
+      job: "",
+      discount: "",
+      period: "",
+      registration: "",
+      phone: "",
+    });
     const [gender, setGender] = useState("여자");
+    const [message, setMessage] = useState("Messate");
     const [file, setFile] = useState({ fileName: null, fileURL: null });
-
-    useEffect(() => {
-      if (phone.length === 10) {
-        setPhone(phone.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-      }
-      if (phone.length === 13) {
-        setPhone(
-          phone.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-        );
-      }
-    }, [phone]);
 
     const fnCloseDetail = () => {
       openEditor(false);
@@ -44,6 +36,14 @@ const CardAddForm = memo(
       return today;
     };
 
+    const onChange = (e) => {
+      const nextState = { ...formItem };
+      nextState[e.target.name] = e.target.value;
+      setFormItem(nextState);
+
+      if (e.target.name === "discount") onDiscountChange(e.target.value);
+    };
+
     const onFileChange = (file) => {
       setFile({
         fileName: file.name,
@@ -51,45 +51,37 @@ const CardAddForm = memo(
       });
     };
 
-    const onDiscountChange = () => {
-      discountRef.current.value === "할인" ? setSale(1000) : setSale(0);
-    };
-
     const onGenderChange = (event) => {
       setGender(event.target.value);
     };
 
-    const onCharCodeCheck = (event) => {
-      const regExp = /[^0-9a-zA-Z]/g;
-      const ele = event.target;
-      if (regExp.test(ele.value)) {
-        ele.value = ele.value.replace(regExp, "");
-      }
+    const onDiscountChange = (value) => {
+      value === "할인" ? setSale(1000) : setSale(0);
     };
 
-    const onAddHypen = (e) => {
-      const regex = /^[0-9\b -]{0,13}$/;
-      if (regex.test(e.target.value)) {
-        setPhone(e.target.value);
-      }
+    const onMessageChange = (event) => {
+      setMessage(event.target.value);
     };
 
     const onSubmit = (event) => {
       event.preventDefault();
-
+      const { name, age, job, discount, period, registration, phone } =
+        formItem;
       const card = {
         id: Date.now(), //uuid
-        name: nameRef.current.value || "",
-        gender: gender || "",
-        age: parseInt(ageRef.current.value) || "-",
-        job: jobRef.current.value || "기타",
-        phone: phone || "",
-        discount: discountRef.current.value || "",
-        period: periodRef.current.value,
-        registration: registrationRef.current.value,
-        message: messageRef.current.value || "",
-        fileName: file.fileName || "",
-        fileURL: file.fileURL || "",
+        name: name,
+        gender: gender,
+        age: age || 0,
+        job: job || "기타",
+        phone: phone
+          .replace(/[^0-9]/, "")
+          .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`),
+        discount: discount || "일반",
+        period: period || "1개월",
+        registration: registration || getDate(),
+        message: message,
+        fileName: file.fileName,
+        fileURL: file.fileURL,
       };
 
       if (card.name === "") {
@@ -105,19 +97,12 @@ const CardAddForm = memo(
       onAdd(card);
     };
 
-    const leftContent = [
+    const input = [
       { label: "이름", name: "name", type: "text" },
       { label: "나이", name: "age", type: "numbe" },
       { label: "직업", name: "job", type: "text" },
       { label: "등록일", name: "registration", type: "date" },
-    ];
-
-    const rightContent = [
-      // { label: "성별", name: "gender", type: "radio" },
       { label: "전화번호", name: "phone", type: "text" },
-      // { label: "구분", name: "discount" },
-      // { label: "등록기간", name: "period" },
-      // { label: "자기소개", name: "message" },
     ];
 
     return (
@@ -130,85 +115,21 @@ const CardAddForm = memo(
         <form ref={formRef} className={styles.form}>
           <div className={styles.section}>
             <div className={styles.formbox}>
-              {/* <div className={styles.formgroup}>
-                <label>*이름</label>
-                <input
-                  ref={nameRef}
-                  className={styles.input}
-                  type="text"
-                  name="name"
-                  placeholder="Nmae"
-                />
-              </div>
-              <div className={styles.formgroup}>
-                <label>나이</label>
-                <input
-                  ref={ageRef}
-                  className={styles.input}
-                  type="number"
-                  name="age"
-                  min={1}
-                  max={100}
-                  placeholder="Age"
-                />
-              </div>
-              <div className={styles.formgroup}>
-                <label>직업</label>
-                <input
-                  ref={jobRef}
-                  className={styles.input}
-                  type="text"
-                  name="job"
-                  placeholder="Job"
-                />
-              </div>
-              <div className={styles.formgroup}>
-                <label>*등록일 </label>
-                <input
-                  ref={registrationRef}
-                  className={styles.input}
-                  type="date"
-                  name="registration"
-                  defaultValue={getDate()}
-                  placeholder="registration"
-                />
-              </div> */}
-
-              {leftContent.map((title) => (
-                <div className={styles.formgroup}>
+              {input.map((title, i) => (
+                <div key={i} className={styles.formgroup}>
                   <label>{title.label}</label>
                   <Input
                     className={styles.input}
-                    ref={`${title.name}Ref`}
                     type={title.type}
                     name={title.name}
-                    value={title.name === "registration" && getDate()}
+                    value={title.name === "registration" ? getDate() : ""}
                     placeholder={title.name}
+                    onChange={onChange}
                   />
                 </div>
               ))}
-            </div>
-
-            <div className={styles.formbox}>
-              {rightContent.map((title) => (
-                <div className={styles.formgroup}>
-                  <label>{title.label}</label>
-                  <Input
-                    className={styles.input}
-                    ref={`${title.name}Ref`}
-                    type={title.type}
-                    name={title.name}
-                    value={title.name === "registration" && getDate()}
-                    placeholder={title.name}
-                  />
-                  {/* <Select /> */}
-                </div>
-              ))}
-            </div>
-
-            {/* <div className={styles.formbox}>
               <div className={styles.formgroup}>
-                <label>*성별 </label>
+                <label>성별 </label>
                 <div className={styles.labelbox}>
                   <label className={styles.gender}>
                     <input
@@ -235,56 +156,27 @@ const CardAddForm = memo(
                   </label>
                 </div>
               </div>
-
-              <div className={styles.formgroup}>
-                <label>*전화번호 </label>
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="phone"
-                  maxLength="11"
-                  placeholder="하이픈(-)없이 입력"
-                  onKeyUp={onCharCodeCheck}
-                  onChange={onAddHypen}
-                />
-              </div>
-              <div className={styles.formgroup}>
-                <label>*구분</label>
-                <select
-                  ref={discountRef}
-                  className={styles.input}
-                  name="discount"
-                  placeholder="Discount"
-                  onChange={onDiscountChange}
-                >
-                  <option value="일반">일반</option>
-                  <option value="할인">할인</option>
-                </select>
-              </div>
-
-              <div className={styles.formgroup}>
-                <label>*등록기간 </label>
-                <select
-                  ref={periodRef}
-                  className={styles.input}
-                  name="period"
-                  placeholder="Period"
-                >
-                  <option value="1개월">1개월</option>
-                  <option value="3개월">3개월</option>
-                  <option value="6개월">6개월</option>
-                </select>
-              </div>
-            </div> */}
+              {select.map((title, i) => (
+                <div key={i} className={styles.formgroup}>
+                  <label>{title.label}</label>
+                  <Select
+                    className={styles.input}
+                    name={title.name}
+                    value={title.value}
+                    onChange={onChange}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className={styles.formgroup}>
             <label>자기소개 :</label>
             <textarea
-              ref={messageRef}
               className={styles.input}
               name="message"
               placeholder="Message"
+              onChange={onMessageChange}
             ></textarea>
           </div>
 
