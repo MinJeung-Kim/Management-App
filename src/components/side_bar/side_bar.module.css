@@ -2,6 +2,7 @@
 
 aside {
   min-width: 18rem;
+  z-index: 9999;
 }
 
 .sidebar {

@@ -16,7 +16,7 @@ const Input = memo(({ className, type, name, value, onChange }) => (
     name={name}
     defaultValue={value}
     onChange={onChange}
-    placeholder={name === "phone" ? "하이픈(-)없이 입력" : name}
+    placeholder={name === "phone" ? "하이픈(-)없이 입력" : ""}
     maxLength={name === "phone" ? 11 : undefined}
     onKeyUp={name === "phone" ? fnCheckCharCode : undefined}
     min={name === "age" ? 1 : undefined}

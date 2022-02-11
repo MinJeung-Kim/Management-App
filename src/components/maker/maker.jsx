@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Editor from "../editor/editor";
-import Footer from "../footer/footer";
 import Header from "../header/header";
 import UserListTable from "../user_list_table/user_list_table";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
-import SideBar from "../side_bar/side_bar";
 
 const Maker = ({ FileInput, authService, cardRepository }) => {
   const history = useHistory();
@@ -14,6 +12,8 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [cards, setCards] = useState({});
   const [userId, setUserID] = useState(historyState && historyState.id);
   const [cardId, setCardID] = useState("");
+
+  const [totalPrice, setTotalPrice] = useState({});
 
   // 팝업 on/off
   const [openEditor, setOpenEditor] = useState(false);
@@ -33,7 +33,9 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
       return;
     }
     const stopSync = cardRepository.syncCards(userId, (cards) => {
+      // console.log(cards);
       setCards(cards);
+      test();
     });
     // 컴포넌트가 Unmount됬을때 호출할 함수 리턴
     return () => stopSync();
@@ -69,9 +71,15 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
     cardRepository.removeCard(userId, card);
   };
 
+  // 등록일 가져오기
+  const test = () => {
+    Object.keys(cards).map((item) => {
+      console.log(cards[item].registration);
+    });
+  };
+
   return (
     <section className={styles.maker}>
-      <SideBar />
       <div className={styles.main}>
         <Header onLogout={onLogout} />
         <div className={styles.container}>
@@ -81,6 +89,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             openDetail={setOpenDetail}
             cardId={setCardID}
           />
+
           {openEditor && (
             <Editor
               FileInput={FileInput}
@@ -102,7 +111,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             />
           )}
         </div>
-        <Footer />
       </div>
     </section>
   );

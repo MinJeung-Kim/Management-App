@@ -10,8 +10,8 @@ const Select = memo(({ name, value, onChange }) => {
       placeholder={name}
       onChange={onChange}
     >
-      {value.map((item) => (
-        <option key={item} value={item}>
+      {value.map((item, i) => (
+        <option key={i} value={item}>
           {item}
         </option>
       ))}

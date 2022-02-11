@@ -1,13 +1,29 @@
-@value makerGrey from  './common/colors.css';
+@value makerLightGrey from  './common/colors.css';
 
 * {
   box-sizing: border-box;
 }
+
 .app {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: makerGrey;
+  z-index: 9999;
+}
+
+.app::before {
+  content: "";
+  width: 100%;
+  height: 70%;
+  position: absolute;
+  bottom: 0;
+  background-color: makerLightGrey;
+}
+
+.backgroud {
+  width: 100%;
+  height: 30%;
+  background-color: #5e72e4;
 }

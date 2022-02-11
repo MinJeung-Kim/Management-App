@@ -8,17 +8,9 @@ import styles from "./card_add_form.module.css";
 const CardAddForm = memo(
   ({ FileInput, onAdd, payPrice, sale, setSale, openEditor }) => {
     const formRef = useRef();
-    const [formItem, setFormItem] = useState({
-      name: "",
-      age: "",
-      job: "",
-      discount: "",
-      period: "",
-      registration: "",
-      phone: "",
-    });
+    const [formItems, setFormItems] = useState();
     const [gender, setGender] = useState("여자");
-    const [message, setMessage] = useState("Messate");
+    const [message, setMessage] = useState("");
     const [file, setFile] = useState({ fileName: null, fileURL: null });
 
     const fnCloseDetail = () => {
@@ -37,9 +29,9 @@ const CardAddForm = memo(
     };
 
     const onChange = (e) => {
-      const nextState = { ...formItem };
+      const nextState = { ...formItems };
       nextState[e.target.name] = e.target.value;
-      setFormItem(nextState);
+      setFormItems(nextState);
 
       if (e.target.name === "discount") onDiscountChange(e.target.value);
     };
@@ -66,7 +58,7 @@ const CardAddForm = memo(
     const onSubmit = (event) => {
       event.preventDefault();
       const { name, age, job, discount, period, registration, phone } =
-        formItem;
+        formItems;
       const card = {
         id: Date.now(), //uuid
         name: name,
@@ -84,6 +76,7 @@ const CardAddForm = memo(
         fileURL: file.fileURL,
       };
 
+      // 필수 입력 체크
       if (card.name === "") {
         return alert("이름을 입력하세요");
       } else if (card.phone === "") {
@@ -123,7 +116,6 @@ const CardAddForm = memo(
                     type={title.type}
                     name={title.name}
                     value={title.name === "registration" ? getDate() : ""}
-                    placeholder={title.name}
                     onChange={onChange}
                   />
                 </div>
@@ -175,7 +167,6 @@ const CardAddForm = memo(
             <textarea
               className={styles.input}
               name="message"
-              placeholder="Message"
               onChange={onMessageChange}
             ></textarea>
           </div>

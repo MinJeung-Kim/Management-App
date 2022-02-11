@@ -4,30 +4,63 @@
 
 .header {
   width: 100%;
-  text-align: center;
-  padding: 0.5em;
-  background-color: makerGreen;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.logo {
-  width: 3em;
+.path {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  padding: 0.5rem 1rem;
 }
 
-.title {
+.box {
+  display: flex;
+  padding: 0;
+  padding-left: 0.5rem;
   margin: 0;
-  color: makerWhite;
 }
 
-.logout {
-  position: absolute;
-  right: 3em;
-  top: 1em;
-  padding: 0.8em;
-  border-radius: 10%;
-  background-color: makerBlack;
-  color: makerWhite;
-  outline: 0;
-  border: 0;
+.first {
+  font-size: 0.875rem;
+  color: #fff;
+}
+
+.second {
+  font-size: 0.875rem;
+  color: #fff;
+  padding-left: 0.5rem;
+}
+
+.second::before {
+  content: "/";
+  color: #fff;
+  float: left;
+  padding-right: 0.5rem;
+}
+
+.pathtitle {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.625;
+  margin: 0;
+  padding-left: 0.5rem;
+}
+
+.icons {
+  width: 16%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+.icons i {
+  font-weight: 900;
   cursor: pointer;
 }

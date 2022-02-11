@@ -1,11 +1,11 @@
-import { firebaseDatabase } from './firebase';
+import { firebaseDatabase } from "./firebase";
 
 // 카드의 정보를 가짐.
 class CardRepository {
   // 해당경로의 데이터가 업데이트 될때마다 snapshot의 value가 설정되어 있다면 onUpdate함수 호출
   syncCards(userId, onUpdate) {
     const ref = firebaseDatabase.ref(`${userId}/cards`);
-    ref.on('value', (snapshot) => {
+    ref.on("value", (snapshot) => {
       const value = snapshot.val();
       value && onUpdate(value);
     });
@@ -18,7 +18,7 @@ class CardRepository {
     firebaseDatabase.ref(`${userId}/cards/${card.id}`).set(card);
   }
   removeCard(userId, card) {
-    //   사용자별 데이터 관리 => 사용자 id에 해당하는 카드의 id에 데이터 저장
+    //   사용자별 데이터 관리 => 사용자 id에 해당하는 카드의 id에 데이터 삭제
     firebaseDatabase.ref(`${userId}/cards/${card.id}`).remove();
   }
 }

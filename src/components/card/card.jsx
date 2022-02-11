@@ -59,9 +59,9 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               onChange={onChange}
             />
             <div className={styles.subinfo}>
-              {inputTop.map((item) => (
+              {inputTop.map((item, i) => (
                 <Input
-                  key={item}
+                  key={i}
                   className={getStyles(item.name)}
                   type={item.type}
                   name={item.name}

@@ -61,16 +61,16 @@ const UserListTable = ({ cards, openEditor, openDetail, cardId }) => {
           </div>
 
           <tr className={styles.thead}>
-            {tableTitle.map((title) => (
-              <th key={title}>{title}</th>
+            {tableTitle.map((title, i) => (
+              <th key={i}>{title}</th>
             ))}
           </tr>
         </thead>
         <tbody className={styles.tbody}>
           {Object.keys(cards)
             .slice(offset, offset + limit)
-            .map((key) => (
-              <tr key={key}>
+            .map((key, i) => (
+              <tr key={i}>
                 <td className={styles.profile}>
                   <img
                     src={cards[key].fileURL || DEFAULT_IMAGE}

@@ -78,11 +78,6 @@ label {
   height: 360px;
 }
 
-label {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
 .input {
   width: 80%;
   padding: 0.375rem 0.75rem;
@@ -99,6 +94,7 @@ label {
 .subinfo {
   display: flex;
   align-items: center;
+  padding-left: 0.8rem;
 }
 
 .name,
@@ -122,13 +118,13 @@ label {
 }
 
 .age {
-  width: 11%;
+  width: 13%;
   padding: 0;
-  text-align: end;
 }
 
 .gender {
-  width: 15%;
+  width: 13%;
+  padding: 0;
 }
 
 .horizontal {
