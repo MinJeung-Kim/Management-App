@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Editor from "../editor/editor";
 import Header from "../header/header";
@@ -6,7 +6,7 @@ import UserListTable from "../user_list_table/user_list_table";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
 
-const Maker = ({ FileInput, authService, cardRepository }) => {
+const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
   const history = useHistory();
   const historyState = useHistory().state;
   const [cards, setCards] = useState({});
@@ -20,12 +20,7 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
   const [openDetail, setOpenDetail] = useState(false);
 
   // 결제 금액
-  const payPrice = 10000;
   const [sale, setSale] = useState(0);
-
-  const onLogout = useCallback(() => {
-    authService.logout();
-  }, [authService]);
 
   // 사용자 id 변경
   useEffect(() => {
@@ -94,7 +89,6 @@ const Maker = ({ FileInput, authService, cardRepository }) => {
             <Editor
               FileInput={FileInput}
               addCard={createOrUpdateCard}
-              payPrice={payPrice}
               sale={sale}
               setSale={setSale}
               openEditor={setOpenEditor}

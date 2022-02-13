@@ -58,8 +58,8 @@
 .formbox {
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .formgroup {
@@ -120,5 +120,16 @@ label {
 .pricegroup {
   width: 90%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.pricebox {
+  height: 1.95rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  width: 100%;
 }

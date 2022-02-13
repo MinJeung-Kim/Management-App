@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useCallback } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import styles from "./app.module.css";
 import Billing from "./components/billing/billing";
@@ -10,6 +9,10 @@ import Maker from "./components/maker/maker";
 import SideBar from "./components/side_bar/side_bar";
 
 function App({ FileInput, authService, cardRepository }) {
+  const onLogout = useCallback(() => {
+    authService.logout();
+  }, [authService]);
+
   return (
     <div className={styles.backgroud}>
       <div className={styles.app}>
@@ -24,10 +27,11 @@ function App({ FileInput, authService, cardRepository }) {
                 FileInput={FileInput}
                 authService={authService}
                 cardRepository={cardRepository}
+                onLogout={onLogout}
               />
             </Route>
             <Route path="/dashboard">
-              <Dashboard />
+              <Dashboard onLogout={onLogout} />
             </Route>
             <Route path="/billing">
               <Billing />

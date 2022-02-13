@@ -1,7 +1,7 @@
 import styles from "./billing.module.css";
 
 const Billing = () => {
-  return <div>Billing</div>;
+  return <div className={styles.billing}>Billing</div>;
 };
 
 export default Billing;

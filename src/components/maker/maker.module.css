@@ -5,6 +5,7 @@
   height: 100%;
   max-width: 80rem;
   position: relative;
+  padding: 24px;
 }
 
 .main {

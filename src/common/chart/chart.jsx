@@ -1,82 +1,98 @@
-import { AreaChart, Area, XAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  CartesianGrid,
+  Tooltip,
+} from "recharts";
 
 const data = [
   {
-    name: "Page A",
-    uv: 4000,
+    name: "Jan",
     pv: 2400,
-    amt: 2400,
   },
   {
-    name: "Page B",
-    uv: 3000,
+    name: "Feb",
     pv: 1398,
-    amt: 2210,
   },
   {
-    name: "Page C",
-    uv: 2000,
+    name: "Mar",
     pv: 9800,
-    amt: 2290,
   },
   {
-    name: "Page D",
-    uv: 2780,
+    name: "Apr",
     pv: 3908,
-    amt: 2000,
   },
   {
-    name: "Page E",
-    uv: 1890,
+    name: "May",
     pv: 4800,
-    amt: 2181,
   },
   {
-    name: "Page F",
-    uv: 2390,
+    name: "Jun",
     pv: 3800,
-    amt: 2500,
   },
   {
-    name: "Page G",
-    uv: 3490,
+    name: "Jul",
     pv: 4300,
-    amt: 2100,
   },
+  {
+    name: "Aug",
+    pv: 4300,
+  },
+  {
+    name: "Sep",
+    pv: 4300,
+  },
+  {
+    name: "Oct",
+    pv: 4300,
+  },
+  {
+    name: "Nov",
+    pv: 4300,
+  },
+  {
+    name: "Dec",
+    pv: 4300,
+  },
+  // Aug Sep Oct Nov Dec
 ];
 
 const Chart = () => {
   return (
-    <AreaChart
-      width={500}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <defs>
-        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor="#EE5A24" stopOpacity={0.8} />
-          <stop offset="95%" stopColor="#EE5A24" stopOpacity={0} />
-        </linearGradient>
-      </defs>
-      <XAxis dataKey="name" />
-      <Tooltip />
-      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DDD" />
+    <ResponsiveContainer width="100%" height={400}>
+      <AreaChart
+        width={300}
+        height={300}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <defs>
+          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#EE5A24" stopOpacity={0.5} />
+            <stop offset="70%" stopColor="#EE5A24" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <XAxis dataKey="name" stroke />
+        <Tooltip />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DDD" />
 
-      <Area
-        type="monotone"
-        dataKey="pv"
-        stroke="#EE5A24"
-        strokeWidth={3}
-        fillOpacity={1}
-        fill="url(#colorUv)"
-      />
-    </AreaChart>
+        <Area
+          type="monotone"
+          dataKey="pv"
+          stroke="#EE5A24"
+          strokeWidth={3}
+          fillOpacity={1}
+          fill="url(#colorUv)"
+        />
+      </AreaChart>
+    </ResponsiveContainer>
   );
 };
 
