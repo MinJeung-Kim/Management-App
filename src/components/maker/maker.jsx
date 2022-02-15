@@ -5,7 +5,7 @@ import UserListTable from "../user_list_table/user_list_table";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
 
-const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
+const Maker = ({ FileInput, authService, cardRepository }) => {
   const history = useHistory();
   const historyState = useHistory().state;
   const [cards, setCards] = useState({});
@@ -27,7 +27,6 @@ const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
     const stopSync = cardRepository.syncCards(userId, (cards) => {
       // console.log(cards);
       setCards(cards);
-      test();
     });
     // 컴포넌트가 Unmount됬을때 호출할 함수 리턴
     return () => stopSync();
@@ -41,6 +40,7 @@ const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
       } else {
         history.push("/");
       }
+      test();
     });
   }, [authService, userId, history]);
 
@@ -65,8 +65,10 @@ const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
 
   // 등록일 가져오기
   const test = () => {
+    // 월별 금액 정산
     Object.keys(cards).map((item) => {
       console.log(cards[item].registration);
+      console.log(cards[item].totalPrice);
     });
   };
 

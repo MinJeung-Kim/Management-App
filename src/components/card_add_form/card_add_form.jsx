@@ -73,7 +73,9 @@ const CardAddForm = memo(({ FileInput, onAdd, sale, setSale, openEditor }) => {
       message: message,
       fileName: file.fileName,
       fileURL: file.fileURL,
-      totalPrice: new Intl.NumberFormat().format(pay.PAY_PRICE - pay.SALE),
+      totalPrice:
+        new Intl.NumberFormat().format(pay.PAY_PRICE - sale) ||
+        new Intl.NumberFormat().format(pay.PAY_PRICE),
     };
 
     // 필수 입력 체크
@@ -183,7 +185,7 @@ const CardAddForm = memo(({ FileInput, onAdd, sale, setSale, openEditor }) => {
           <hr />
           <div className={styles.pricebox}>
             <p className={styles.price}>총 금액</p>
-            <p>{new Intl.NumberFormat().format(pay.PAY_PRICE - pay.SALE)}</p>
+            <p>{new Intl.NumberFormat().format(pay.PAY_PRICE - sale)}</p>
           </div>
         </div>
         <div className={styles.buttonbox}>

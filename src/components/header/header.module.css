@@ -12,6 +12,7 @@
 }
 
 .path {
+  min-width: 11rem;
   display: flex;
   flex-direction: column;
   align-items: baseline;
@@ -28,12 +29,14 @@
 .first {
   font-size: 0.875rem;
   color: #fff;
+  opacity: 0.5;
 }
 
 .second {
   font-size: 0.875rem;
   color: #fff;
   padding-left: 0.5rem;
+  text-transform: capitalize;
 }
 
 .second::before {
@@ -55,6 +58,7 @@
 
 .icons {
   width: 16%;
+  min-width: 11rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -65,4 +69,5 @@
 .icons i {
   font-weight: 900;
   cursor: pointer;
+  padding-right: 0.3rem;
 }

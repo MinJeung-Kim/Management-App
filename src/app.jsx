@@ -35,7 +35,6 @@ function App({ FileInput, authService, cardRepository }) {
                   FileInput={FileInput}
                   authService={authService}
                   cardRepository={cardRepository}
-                  onLogout={onLogout}
                 />
               </Route>
               <Route path="/dashboard">
