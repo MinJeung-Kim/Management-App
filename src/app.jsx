@@ -17,7 +17,9 @@ function App({ FileInput, authService, cardRepository }) {
     <div className={styles.backgroud}>
       <div className={styles.app}>
         <BrowserRouter>
-          <SideBar />
+          <Switch>
+            <Route path="/:id" children={<SideBar />} />
+          </Switch>
           <Switch>
             <Route exact path="/">
               <Login authService={authService} />
@@ -43,5 +45,17 @@ function App({ FileInput, authService, cardRepository }) {
     </div>
   );
 }
+
+// function Child() {
+//   // We can use the `useParams` hook here to access
+//   // the dynamic pieces of the URL.
+//   let { id } = useParams();
+
+//   return (
+//     <div>
+//       <h3>ID: {id}</h3>
+//     </div>
+//   );
+// }
 
 export default App;

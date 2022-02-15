@@ -1,7 +1,10 @@
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./side_bar.module.css";
 
 const SideBar = () => {
+  let { id } = useParams();
+  console.log(id);
   return (
     <aside>
       <ul className={styles.sidebar}>

@@ -3,13 +3,12 @@
 .maker {
   width: 100%;
   height: 100%;
-  max-width: 80rem;
+  /* max-width: 80rem; */
   position: relative;
   padding: 24px;
 }
 
 .main {
-  position: relative;
 }
 
 @media screen and (max-width: mediaQuery) {
