@@ -1,12 +1,19 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./side_bar.module.css";
 
-const SideBar = () => {
+const SideBar = ({ menu }) => {
   const path = [
     { id: 1, path: "dashboard", icon: "fas fa-chart-line" },
     { id: 2, path: "maker", icon: "fas fa-user" },
     { id: 3, path: "billing", icon: "far fa-credit-card" },
   ];
+
+  const { id } = useParams();
+  useEffect(() => {
+    menu(id);
+  }, [id]);
 
   return (
     <aside>

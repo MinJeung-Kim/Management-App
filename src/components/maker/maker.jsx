@@ -76,7 +76,7 @@ const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
   return (
     <section className={styles.maker}>
       <div className={styles.main}>
-        <Header onLogout={onLogout} />
+        {/* <Header onLogout={onLogout} /> */}
         <div className={styles.container}>
           <UserListTable
             cards={cards}

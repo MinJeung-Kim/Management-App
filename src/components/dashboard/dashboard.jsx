@@ -6,7 +6,7 @@ import styles from "./dashboard.module.css";
 const Dashboard = ({ onLogout }) => {
   return (
     <section className={styles.dashboard}>
-      <Header onLogout={onLogout} />
+      {/* <Header onLogout={onLogout} /> */}
       <div className={styles.content}>
         <div className={styles.chart}>
           <Chart />

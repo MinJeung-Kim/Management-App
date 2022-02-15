@@ -79,7 +79,7 @@ const Chart = () => {
             <stop offset="70%" stopColor="#EE5A24" stopOpacity={0} />
           </linearGradient>
         </defs>
-        <XAxis dataKey="name" stroke />
+        <XAxis dataKey="name" stroke="true" />
         <Tooltip />
         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DDD" />
 

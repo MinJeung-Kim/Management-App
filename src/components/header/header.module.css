@@ -3,12 +3,11 @@
 @value makerBlack from '../../common/colors.css';
 
 .header {
-  width: 100%;
   position: relative;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .path {

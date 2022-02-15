@@ -1,8 +1,9 @@
 @value makerWhite from '../../common/colors.css';
 
 aside {
-  min-width: 18rem;
-  z-index: 9999;
+  position: relative;
+  display: flex;
+  flex: 1;
 }
 
 .sidebar {
