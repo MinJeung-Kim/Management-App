@@ -1,31 +1,40 @@
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./side_bar.module.css";
 
 const SideBar = () => {
-  let { id } = useParams();
-  console.log(id);
+  const path = [
+    { id: 1, path: "dashboard", icon: "fas fa-chart-line" },
+    { id: 2, path: "maker", icon: "fas fa-user" },
+    { id: 3, path: "billing", icon: "far fa-credit-card" },
+  ];
+
   return (
     <aside>
       <ul className={styles.sidebar}>
-        <li className={styles.dashboard}>
-          <Link to="/dashboard">
-            <i className="fas fa-chart-line"></i>Dashboard
-          </Link>
-        </li>
-        <li className={styles.tables}>
-          <Link to="/maker">
-            <i className="fas fa-user"></i>Tables
-          </Link>
-        </li>
-        <li className={styles.billing}>
-          <Link to="/billing">
-            <i className="far fa-credit-card"></i>Billing
-          </Link>
-        </li>
+        {path.map((item) => (
+          <li className={getStyles(item.path)} key={item.id}>
+            <Link to={`/${item.path}`}>
+              <i className={item.icon}></i>
+              {item.path}
+            </Link>
+          </li>
+        ))}
       </ul>
     </aside>
   );
 };
+
+function getStyles(theme) {
+  switch (theme) {
+    case "dashboard":
+      return styles.dashboard;
+    case "maker":
+      return styles.maker;
+    case "billing":
+      return styles.billing;
+    default:
+      throw new Error(`unknown theme: ${theme}`);
+  }
+}
 
 export default SideBar;
