@@ -3,6 +3,7 @@
 aside {
   position: relative;
   display: flex;
+  min-width: 17rem;
   flex: 1;
 }
 

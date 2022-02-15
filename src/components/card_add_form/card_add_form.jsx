@@ -73,6 +73,7 @@ const CardAddForm = memo(({ FileInput, onAdd, sale, setSale, openEditor }) => {
       message: message,
       fileName: file.fileName,
       fileURL: file.fileURL,
+      totalPrice: new Intl.NumberFormat().format(pay.PAY_PRICE - pay.SALE),
     };
 
     // 필수 입력 체크

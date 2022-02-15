@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Editor from "../editor/editor";
-import Header from "../header/header";
 import UserListTable from "../user_list_table/user_list_table";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
@@ -12,8 +11,6 @@ const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
   const [cards, setCards] = useState({});
   const [userId, setUserID] = useState(historyState && historyState.id);
   const [cardId, setCardID] = useState("");
-
-  const [totalPrice, setTotalPrice] = useState({});
 
   // 팝업 on/off
   const [openEditor, setOpenEditor] = useState(false);
@@ -76,7 +73,6 @@ const Maker = ({ FileInput, authService, cardRepository, onLogout }) => {
   return (
     <section className={styles.maker}>
       <div className={styles.main}>
-        {/* <Header onLogout={onLogout} /> */}
         <div className={styles.container}>
           <UserListTable
             cards={cards}

@@ -38,7 +38,7 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
   };
 
   // card에 있는 모든 정보 전달
-  const { name, message, fileURL, fileName } = card;
+  const { name, message, fileURL, fileName, totalPrice } = card;
   const url = fileURL || DEFAULT_IMAGE;
   return (
     <>
@@ -118,6 +118,13 @@ const Card = memo(({ FileInput, card, updateCard, deleteCard, openDetail }) => {
               onChange={onChange}
             ></textarea>
           </div>
+          <label>결제 금액 </label>
+          <input
+            className={styles.totalPrice}
+            type="text"
+            name="totalPrice"
+            defaultValue={totalPrice}
+          />
         </div>
       </li>
       <Button name="Delete" onClick={onSubmit} />

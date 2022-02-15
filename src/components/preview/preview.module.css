@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   background: modalBackground;
+  z-index: 9999;
 }
 
 .title {
